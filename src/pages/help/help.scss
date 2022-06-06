@@ -1,0 +1,65 @@
+.help {
+  padding: 10px 0 70px;
+  &__row {
+    display: flex;
+    justify-content: space-between;
+    @media (max-width: 320px) {
+      flex-direction: column;
+    }
+  }
+  &__image {
+    width: 453px;
+    height: 453px;
+    @media (max-width: 320px) {
+      width: 100%;
+      height: 288px;
+    }
+  }
+  &__text {
+    margin-top: 10px;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 29px;
+    @media (max-width: 320px) {
+      font-size: 18px;
+    }
+  }
+  &__accordion {
+    width: 55%;
+    @media (max-width: 320px) {
+      width: 100%;
+    }
+  }
+  .accordion {
+    &__content {
+      padding: 15px;
+      background: white;
+      margin-top: 12px;
+      &-head {
+        display: flex;
+        justify-content: space-between;
+        h4 {
+          font-size: 16px;
+          font-weight: 400;
+          color: #393939;
+          max-width: 93%;
+          @media (max-width: 320px) {
+            font-size: 13px;
+          }
+        }
+      }
+      &-body {
+        margin-top: 12px;
+        font-size: 14px;
+        font-weight: 300;
+        color: #354455;
+        transition-duration: 1s;
+      }
+    }
+
+    &__head-img {
+      width: 17.5px;
+      height: 10px;
+    }
+  }
+}

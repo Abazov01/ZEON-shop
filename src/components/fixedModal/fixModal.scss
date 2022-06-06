@@ -1,0 +1,62 @@
+.fixModal {
+  position: fixed;
+  right: 100px;
+  bottom: 100px;
+  @media (max-width:320px) {
+    display: none;
+  }
+  &__chats {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    width: 150px;
+    height: 100%;
+    margin-right: 20px;
+    @media (max-width: 320px){
+      width: 120px;
+    }
+    &-telegram,
+    &-whatsapp,
+    &-phone {
+      width: 43px;
+      height: 43px;
+      cursor: pointer;
+      @media (max-width: 320px) {
+        width: 36px;
+        height: 36px;
+      }
+    }
+  }
+  .upwrapper{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+  &__up {
+      
+    display: flex;
+    justify-content: flex-end;
+    width: 24px;
+    height: 18px;
+    margin-bottom: 20px;
+    cursor: pointer;
+
+    
+}
+  &__down {
+    display: flex;
+    align-items: center;
+
+    &-handler {
+        display: flex;
+        align-items: center;
+        height: 43px;
+        cursor: pointer;
+      .chatwrapper{
+        
+        width: 24px;
+        height: 24px;
+      }
+    }
+  }
+}

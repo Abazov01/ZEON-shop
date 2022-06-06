@@ -1,0 +1,92 @@
+@import "react-alice-carousel/lib/scss/alice-carousel.scss";
+
+.homeCar {
+  background: #ececec;
+  padding: 10px 0;
+  
+  .carousel {
+    &__slide {
+      position: relative;
+      //   height: 486px;
+      @media (max-width:320px) {
+        // height: 298px;
+      }
+
+
+      &-left {
+        position: absolute;
+        z-index: 2;
+        top: 34%;
+        left: 10.35%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        @media (max-width:320px) {
+          left: 13%;
+        }
+        .__top {
+          width: 175px;
+          height: 85px;
+          @media (max-width: 320px) {
+            width: 62px;
+            height: 30px;
+          }
+        }
+        .__bottom {
+          margin-top: 11px;
+          width: 110px;
+          height: 32px;
+          @media (max-width: 320px) {
+            margin-top: 3px;
+            width: 39px;
+            height: 11px;
+          }
+        }
+      }
+      &-right {
+        position: absolute;
+        z-index: 2;
+        top: 27.5%;
+        right: 29%;
+        height: 260px;
+        @media (max-width: 320px) {
+          width: 25px;
+          height: 75px;
+        }
+      }
+    }
+  }
+}
+.alice-carousel__prev-btn,
+.alice-carousel__next-btn {
+  display: none;
+}
+
+.alice-carousel__dots {
+  margin: 0 0 34px 0;
+}
+.alice-carousel__wrapper {
+  margin-bottom: -5px;
+  
+}
+.alice-carousel__dots-item:not(.__custom) {
+  width: 8px;
+  height: 8px;
+  cursor: pointer;
+  border-radius: 50%;
+  background-color: #fff;
+  border: 1px solid rgba(29, 29, 27, 0.3);
+  &:hover {
+    background: rgb(234, 234, 234);
+  }
+}
+.alice-carousel__dots-item:not(.__custom).__active {
+  width: 8px;
+  height: 8px;
+  cursor: pointer;
+  border-radius: 50%;
+  background-color: #000;
+}
+.alice-carousel__dots-item:not(.__custom):not(:last-child) {
+  margin-right: 6px;
+}

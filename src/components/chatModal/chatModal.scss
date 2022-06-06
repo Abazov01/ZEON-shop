@@ -1,0 +1,147 @@
+.chatModal {
+  .overlay{
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: rgba(49, 49, 49, 0.8);
+  }
+  
+  .modal-content {
+    position: absolute;
+    top: 23%;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    line-height: 1.4;
+    background-color: #f1f1f1;
+    padding: 36px;
+    width: 425px;
+    // height: 115px;
+    @media (max-width: 320px) {
+      width: 85%;
+      padding: 24px 16px;
+    } 
+  }
+}
+
+.send {
+  &__title {
+    font-size: 19px;
+    font-weight: 600;
+    @media (max-width: 320px) {
+      font-size: 14px;
+      font-weight: 600;
+      
+    }
+  }
+  &__text {
+    font-size: 17px;
+    font-weight: 400;
+    @media (max-width: 320px) {
+      font-size: 12px;
+      font-weight: 400;
+      
+    }
+  }
+  &__body {
+    &-name {
+      border: 1px solid rgba(31, 31, 31, 0.08);
+      border-radius: 3px;
+      padding: 10px 14px;
+      margin-top: 10px;
+      img {
+        width: 14px;
+        height: 14px;
+      }
+      input {
+        margin-left: 10px;
+        border: none;
+        outline: none;
+        background: transparent;
+        font-weight: 400;
+        font-size: 13px;
+        color: #393939;
+        width: 80%;
+
+      }
+    }
+    &-phone {
+      border: 1px solid rgba(31, 31, 31, 0.08);
+      border-radius: 3px;
+      padding: 8.5px 14px;
+      margin-top: 10px;
+
+      img {
+        width: 19px;
+        height: 19px;
+      }
+      input {
+        margin-left: 10px;
+        border: none;
+        outline: none;
+        background: transparent;
+        font-weight: 400;
+        font-size: 13px;
+        color: #393939;
+        width: 80%;
+      }
+      input::-webkit-outer-spin-button,
+      input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+      }
+    }
+    &-btn {
+      width: 100%;
+      padding: 10px 0;
+      cursor: pointer;
+      margin-top: 10px;
+      text-align: center;
+      border: 1px solid rgba(31, 31, 31, 0.08);
+      color: white;
+      font-weight: 500;
+      font-size: 14px;
+    }
+  }
+}
+
+.modal-close {
+  width: 14px;
+  height: 14px;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  cursor: pointer;
+}
+.thanks {
+  text-align: center;
+
+  &__img {
+    width: 58px;
+    height: 58px;
+    margin: 0 auto;
+  }
+  &__title {
+    font-size: 21px;
+    font-weight: 500;
+    margin-top: 13px;
+  }
+  &__text {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 20px;
+    margin-top: 8px;
+  }
+  &__button {
+    padding: 13px 20px;
+    background: #000;
+    color: white;
+    font-weight: 500;
+    font-size: 14px;
+    margin-top: 13px;
+    cursor: pointer;
+  }
+}

@@ -1,0 +1,22 @@
+{
+    "products":[
+        {
+            "id":"",
+            "name":"Вечернее платье",
+            "collection":"Лето 2020",
+            "status":"",
+            "price":"",
+            "discount":"",
+            "articul":"",
+            "description":"",
+            "compound":"",
+            "material":"",
+            "size":{"start":42,"end":50},
+            "images":[]
+        }
+    ],
+    "collections":[]
+}
+
+
+    
