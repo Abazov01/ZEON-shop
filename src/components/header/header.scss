@@ -39,7 +39,6 @@
   }
   &__2-form {
     width: 57%; // 610px from 1069
-
   }
   &__form {
     border: 1px solid #e0e0e0;
@@ -60,6 +59,7 @@
       background: none;
       width: 17.5px;
       height: 17.5px;
+      cursor: pointer;
     }
   }
   &__2-end {
@@ -68,6 +68,7 @@
     display: flex;
     &-favorite {
       display: flex;
+      color: #000;
       & img {
         margin-right: 7px;
       }
@@ -77,6 +78,7 @@
     }
     &-card {
       display: flex;
+      color: #000;
       & img {
         margin-right: 7px;
       }
@@ -86,7 +88,7 @@
     display: none;
   }
 
-  .overlay{
+  .overlay {
     display: none;
   }
 }
@@ -104,7 +106,6 @@
     &__block-1 {
       display: none;
     }
-    
 
     &__block-2 {
       height: 80px;
@@ -162,109 +163,102 @@
     &__2-end {
       display: none;
     }
-    
+
     &__modal {
       display: block;
       width: 18px;
       height: 18px;
     }
-    
+
+    .overlay {
+      width: 100vw;
+      height: 100%;
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      z-index: 2;
       display: block;
-      .overlay
-      {
-        width: 100vw;
-        height: 100vh;
-        position: absolute;
-        top: 0;
-        right: 0;
-        left: 0;
-        bottom: 0;
-        z-index: 1;
-      }
-      
-      .overlay {
-        display: block;
-        background-color: rgba(49, 49, 49, 0.5);
-        left: -100%;
-        transition: .5s;
-      }
-      .show-overlay{
-        left: 0;
-      }
-      .-content {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        line-height: 1.4;
-        background-color: #f1f1f1;
-        padding: 16px;
-        width: 78%;
-        height: 100vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        .-top{
-          .-title{
+      background-color: rgba(49, 49, 49, 0.5);
+      left: -100%;
+      transition: 0.5s;
+    }
+
+  
+    .show-overlay {
+      left: 0;
+    }
+    .-content {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      line-height: 1.4;
+      background-color: #f1f1f1;
+      padding: 16px;
+      width: 78%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      .-top {
+        .-title {
+          display: flex;
+          justify-content: space-between;
+          .-menu {
+            font-size: 16px;
+            font-weight: 500;
+          }
+          .-closeicon {
+            width: 14px;
+            height: 14px;
+          }
+        }
+        .-body {
+          font-size: 13px;
+          font-weight: 500;
+          span {
+            width: 100px;
+            height: 1px;
+            display: block;
+            background: #d3d3d3;
+            margin: 14px 0;
+          }
+          img {
+            width: 16px;
+            height: 16px;
+            margin-right: 6px;
+          }
+          .-first {
+            margin-top: 20px;
+          }
+          .-second {
             display: flex;
-            justify-content: space-between;
-            .-menu{
-              font-size: 16px;font-weight: 500;
-            }
-            .-closeicon{
-              width: 14px;
-              height: 14px;
-            }
-          }
-          .-body{
-            font-size: 13px;
-            font-weight: 500;
-            span{
-              width: 100px;
-              height: 1px;
-              display: block;
-              background: #D3D3D3;
-              margin: 14px 0;
-            }
-            img{
-              width: 16px;
-              height: 16px;
-              margin-right: 6px;
-            }
-            .-first{
-              margin-top: 20px;
-            }
-            .-second{
-              display: flex;
-              align-items: center;
-              height: 16px;
-              margin-bottom: 20px;
-            }
-          }
-        }
-        .-bottom{
-          .-title{
-            font-size: 15px;
-            font-weight: 500;
-            margin-bottom: 8px;
-          }
-          .-phone{
-            font-size: 13px;
-            font-weight: 400;
-            color: #979797;
-            span{
-              color: black;
-            }
-            margin-bottom: 8px;
-          }
-          .-icons{
-
+            align-items: center;
+            height: 16px;
+            margin-bottom: 20px;
           }
         }
       }
-    
-    
-
+      .-bottom {
+        .-title {
+          font-size: 15px;
+          font-weight: 500;
+          margin-bottom: 8px;
+        }
+        .-phone {
+          font-size: 13px;
+          font-weight: 400;
+          color: #979797;
+          span {
+            color: black;
+          }
+          margin-bottom: 8px;
+        }
+        .-icons {
+        }
+      }
+    }
   }
-
 }

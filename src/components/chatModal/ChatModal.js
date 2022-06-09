@@ -19,6 +19,7 @@ export default function ChatModal({ chat, setChat, setMess }) {
             setValid(true)
         }
     },[name, phone])
+    
   return (
     <div className="chatModal" style={{ display: chat ? "block" : "none" }}>
       <div onClick={() =>{ setChat(false);setMess(false);dispatch(isSended(false))}} className="overlay">

@@ -1,22 +1,270 @@
 {
-    "products":[
-        {
-            "id":"",
-            "name":"Вечернее платье",
-            "collection":"Лето 2020",
-            "status":"",
-            "price":"",
-            "discount":"",
-            "articul":"",
-            "description":"",
-            "compound":"",
-            "material":"",
-            "size":{"start":42,"end":50},
-            "images":[]
-        }
-    ],
-    "collections":[]
+  "products": [
+    {
+      "id": "",
+      "name": "Вечернее платье",
+      "collection": "Лето 2020",
+      "status": "",
+      "price": "",
+      "discount": "",
+      "articul": "",
+      "description": "",
+      "compound": "",
+      "material": "",
+      "size": { "start": 42, "end": 50 },
+      "images": []
+    }
+  ],
+  "collections": [
+    {
+      "id": "1",
+      "name": "Повседневная одежда",
+      "img": "https://i.postimg.cc/mDZbqvLS/image-11.png"
+    },
+    {
+      "id": "2",
+      "name": "Одежда на пляж",
+      "img": "https://i.postimg.cc/T1FfKhrk/image-11-1.png"
+    },
+    {
+      "id": "3",
+      "name": "Юбки",
+      "img": "https://i.postimg.cc/9MxWjLzH/image-11-2.png"
+    },
+    {
+      "id": "4",
+      "name": "Джинсы",
+      "img": "https://i.postimg.cc/RCDMspjc/image-11-3.png"
+    },
+    {
+      "id": "5",
+      "name": "Для выезда на природу",
+      "img": "https://i.postimg.cc/XvkjsjbJ/image-11-5.png"
+    },
+    {
+      "id": "6",
+      "name": "Платья",
+      "img": "https://i.postimg.cc/L5nm4jZY/image-11-4.png"
+    },
+    {
+      "id": "7",
+      "name": "Коллекция осень 2020",
+      "img": "https://i.postimg.cc/L5nm4jZY/image-11-4.png"
+    },
+    {
+      "id": "8",
+      "name": "Коллекция лето 2020",
+      "img": "https://i.postimg.cc/T1FfKhrk/image-11-1.png"
+    },
+    {
+      "id": "9",
+      "name": "Коллекция весна 2020",
+      "img": "https://i.postimg.cc/9MxWjLzH/image-11-2.png"
+    },
+    {
+      "id": "10",
+      "name": "Коллекция зима 2020",
+      "img": "https://i.postimg.cc/mDZbqvLS/image-11.png"
+    },
+    {
+      "id": "11",
+      "name": "Повседневная одежда",
+      "img": "https://i.postimg.cc/mDZbqvLS/image-11.png"
+    },
+    {
+      "id": "12",
+      "name": "Одежда на пляж",
+      "img": "https://i.postimg.cc/T1FfKhrk/image-11-1.png"
+    },
+    {
+      "id": "13",
+      "name": "Юбки",
+      "img": "https://i.postimg.cc/9MxWjLzH/image-11-2.png"
+    },
+    {
+      "id": "14",
+      "name": "Джинсы",
+      "img": "https://i.postimg.cc/RCDMspjc/image-11-3.png"
+    },
+    {
+      "id": "15",
+      "name": "Для выезда на природу",
+      "img": "https://i.postimg.cc/XvkjsjbJ/image-11-5.png"
+    },
+    {
+      "id": "16",
+      "name": "Платья",
+      "img": "https://i.postimg.cc/L5nm4jZY/image-11-4.png"
+    },
+    {
+      "id": "17",
+      "name": "Коллекция осень 2020",
+      "img": "https://i.postimg.cc/L5nm4jZY/image-11-4.png"
+    },
+    {
+      "id": "18",
+      "name": "Коллекция лето 2020",
+      "img": "https://i.postimg.cc/T1FfKhrk/image-11-1.png"
+    },
+    {
+      "id": "19",
+      "name": "Коллекция весна 2020",
+      "img": "https://i.postimg.cc/9MxWjLzH/image-11-2.png"
+    },
+    {
+      "id": "20",
+      "name": "Коллекция зима 2020",
+      "img": "https://i.postimg.cc/mDZbqvLS/image-11.png"
+    },
+    {
+      "id": "21",
+      "name": "Повседневная одежда",
+      "img": "https://i.postimg.cc/mDZbqvLS/image-11.png"
+    },
+    {
+      "id": "22",
+      "name": "Одежда на пляж",
+      "img": "https://i.postimg.cc/T1FfKhrk/image-11-1.png"
+    },
+    {
+      "id": "23",
+      "name": "Юбки",
+      "img": "https://i.postimg.cc/9MxWjLzH/image-11-2.png"
+    },
+    {
+      "id": "24",
+      "name": "Джинсы",
+      "img": "https://i.postimg.cc/RCDMspjc/image-11-3.png"
+    },
+    {
+      "id": "25",
+      "name": "Для выезда на природу",
+      "img": "https://i.postimg.cc/XvkjsjbJ/image-11-5.png"
+    },
+    {
+      "id": "26",
+      "name": "Платья",
+      "img": "https://i.postimg.cc/L5nm4jZY/image-11-4.png"
+    },
+    {
+      "id": "27",
+      "name": "Коллекция осень 2020",
+      "img": "https://i.postimg.cc/L5nm4jZY/image-11-4.png"
+    },
+    {
+      "id": "28",
+      "name": "Коллекция лето 2020",
+      "img": "https://i.postimg.cc/T1FfKhrk/image-11-1.png"
+    },
+    {
+      "id": "29",
+      "name": "Коллекция весна 2020",
+      "img": "https://i.postimg.cc/9MxWjLzH/image-11-2.png"
+    },
+    {
+      "id": "30",
+      "name": "Коллекция зима 2020",
+      "img": "https://i.postimg.cc/mDZbqvLS/image-11.png"
+    },
+    {
+      "id": "31",
+      "name": "Повседневная одежда",
+      "img": "https://i.postimg.cc/mDZbqvLS/image-11.png"
+    },
+    {
+      "id": "32",
+      "name": "Одежда на пляж",
+      "img": "https://i.postimg.cc/T1FfKhrk/image-11-1.png"
+    },
+    {
+      "id": "33",
+      "name": "Юбки",
+      "img": "https://i.postimg.cc/9MxWjLzH/image-11-2.png"
+    },
+    {
+      "id": "34",
+      "name": "Джинсы",
+      "img": "https://i.postimg.cc/RCDMspjc/image-11-3.png"
+    },
+    {
+      "id": "35",
+      "name": "Для выезда на природу",
+      "img": "https://i.postimg.cc/XvkjsjbJ/image-11-5.png"
+    },
+    {
+      "id": "36",
+      "name": "Платья",
+      "img": "https://i.postimg.cc/L5nm4jZY/image-11-4.png"
+    },
+    {
+      "id": "37",
+      "name": "Коллекция осень 2020",
+      "img": "https://i.postimg.cc/L5nm4jZY/image-11-4.png"
+    },
+    {
+      "id": "38",
+      "name": "Коллекция лето 2020",
+      "img": "https://i.postimg.cc/T1FfKhrk/image-11-1.png"
+    },
+    {
+      "id": "39",
+      "name": "Коллекция весна 2020",
+      "img": "https://i.postimg.cc/9MxWjLzH/image-11-2.png"
+    },
+    {
+      "id": "40",
+      "name": "Коллекция зима 2020",
+      "img": "https://i.postimg.cc/mDZbqvLS/image-11.png"
+    },
+    {
+      "id": "41",
+      "name": "Повседневная одежда",
+      "img": "https://i.postimg.cc/mDZbqvLS/image-11.png"
+    },
+    {
+      "id": "42",
+      "name": "Одежда на пляж",
+      "img": "https://i.postimg.cc/T1FfKhrk/image-11-1.png"
+    },
+    {
+      "id": "43",
+      "name": "Юбки",
+      "img": "https://i.postimg.cc/9MxWjLzH/image-11-2.png"
+    },
+    {
+      "id": "44",
+      "name": "Джинсы",
+      "img": "https://i.postimg.cc/RCDMspjc/image-11-3.png"
+    },
+    {
+      "id": "45",
+      "name": "Для выезда на природу",
+      "img": "https://i.postimg.cc/XvkjsjbJ/image-11-5.png"
+    },
+    {
+      "id": "46",
+      "name": "Платья",
+      "img": "https://i.postimg.cc/L5nm4jZY/image-11-4.png"
+    },
+    {
+      "id": "47",
+      "name": "Коллекция осень 2020",
+      "img": "https://i.postimg.cc/L5nm4jZY/image-11-4.png"
+    },
+    {
+      "id": "48",
+      "name": "Коллекция лето 2020",
+      "img": "https://i.postimg.cc/T1FfKhrk/image-11-1.png"
+    },
+    {
+      "id": "49",
+      "name": "Коллекция весна 2020",
+      "img": "https://i.postimg.cc/9MxWjLzH/image-11-2.png"
+    },
+    {
+      "id": "50",
+      "name": "Коллекция зима 2020",
+      "img": "https://i.postimg.cc/mDZbqvLS/image-11.png"
+    }
+  ]
 }
-
-
-    

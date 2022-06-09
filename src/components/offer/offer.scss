@@ -1,0 +1,28 @@
+.offer {
+  margin: 48px 0;
+  .-title {
+    font-size: 24px;
+    font-weight: 500;
+    @media (max-width: 320px) {
+      font-size: 16px;
+    }
+  }
+  .__row {
+    display: flex;
+    justify-content: space-between;
+    margin: 16px 0;
+    @media (max-width: 320px) {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      min-width: 100%;
+    }
+    .-wrapper {
+      width: 19.4%;
+      height: 420px;
+      @media (max-width: 320px) {
+        min-width: 80%;
+        margin-right: 8px;
+      }
+    }
+  }
+}

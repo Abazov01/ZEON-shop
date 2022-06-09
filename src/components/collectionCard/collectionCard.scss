@@ -1,0 +1,60 @@
+.collectionCard {
+  width: 100%;
+  height: 100%;
+  
+  .__start {
+    height: 88%;
+    background-repeat: no-repeat;
+    border-style: cover;
+    position: relative;
+    .-title {
+      position: absolute;
+      bottom: 12px;
+      left: 0;
+      right: 0;
+      margin: 0 auto;
+      color: #fff;
+      width: 80%;
+      text-align: center;
+      font-weight: 500;
+      font-size: 15px;
+      @media (max-width:320px) {
+        font-size: 15px;
+        font-weight: 500;
+    }
+    }
+  }
+  .__end {
+      height: 12%;
+      background: #000;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      .-text{
+        font-size: 14px;
+        font-weight: 500;
+        @media (max-width:320px) {
+          font-size: 13px;
+          font-weight: 500;
+      }
+      }
+      .-icon{
+          display: block;
+          width: 10px;
+          height: 17.5px;
+          margin-left: 15px;
+          background: url('../../assets/watchAll.svg');
+      }
+  }
+  
+  .__end:hover{
+    background: #fff;
+    color: #000;
+    .-icon{
+        background: url('../../assets/Next.svg');
+
+    }
+  }
+}

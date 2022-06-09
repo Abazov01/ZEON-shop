@@ -5,6 +5,8 @@ import { boolReducer } from './booleanReducer';
 import { questionsReducer } from './questionsReducer';
 import { newsReducer } from './newsReducer';
 import { aboutReducer } from './aboutReducer';
+import { collectionsReducer } from './collectionsReducer';
+import { statusReducer } from './statusReducer';
 
 export const rootReducer = combineReducers({
     footer: footerReducer,
@@ -13,4 +15,6 @@ export const rootReducer = combineReducers({
     questions: questionsReducer,
     news: newsReducer,
     about: aboutReducer,
+    collections: collectionsReducer,
+    statuses: statusReducer,
 })

@@ -1,23 +1,17 @@
-// const images = [
-//   "https://i.postimg.cc/fWtzpMTy/image1.jpg",
-//   "https://i.postimg.cc/gJwWCKpQ/image2.png",
-//   "https://i.postimg.cc/y8vCWGY2/image3.png",
-//   "https://i.postimg.cc/bN0hfrXy/image4.png",
-//   "https://i.postimg.cc/NfvcnTzC/image5.png",
-//   "https://i.postimg.cc/C1WgSfL1/image6.png",
-//   "https://i.postimg.cc/D0LKZy8c/image7.png",
-//   "https://i.postimg.cc/DfXh55Bb/image8.png",
-//   "https://i.postimg.cc/pL2tWvxD/image9.png",
-//   "https://i.postimg.cc/9f059BD0/image10.png",
-//   "https://i.postimg.cc/xdZr3bmR/image11.png",
-// ];
-// const news = [
-//   "https://i.postimg.cc/26byfKZN/news1.png",
-//   "https://i.postimg.cc/ydMd6ymg/news2.png",
-//   "https://i.postimg.cc/4yp3YHP8/news3.png",
-//   "https://i.postimg.cc/T2b17Bxr/news4.png",
-//   "https://i.postimg.cc/7Yy6pXPj/news5.png",
-// ];
+const images = [
+  "https://i.postimg.cc/fWtzpMTy/image1.jpg",
+  "https://i.postimg.cc/gJwWCKpQ/image2.png",
+  "https://i.postimg.cc/y8vCWGY2/image3.png",
+  "https://i.postimg.cc/bN0hfrXy/image4.png",
+  "https://i.postimg.cc/NfvcnTzC/image5.png",
+  "https://i.postimg.cc/C1WgSfL1/image6.png",
+  "https://i.postimg.cc/D0LKZy8c/image7.png",
+  "https://i.postimg.cc/DfXh55Bb/image8.png",
+  "https://i.postimg.cc/pL2tWvxD/image9.png",
+  "https://i.postimg.cc/9f059BD0/image10.png",
+  "https://i.postimg.cc/xdZr3bmR/image11.png",
+];
+// console.log(images.splice(0,4))
 
 // console.log(news.splice(0,2))
 

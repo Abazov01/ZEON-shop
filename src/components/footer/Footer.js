@@ -6,6 +6,7 @@ import mail from "../../assets/footer/mail (2).png";
 import whatsapp from "../../assets/footer/whats.png";
 import insta from "../../assets/footer/insta.png";
 import telega from "../../assets/footer/telega.png";
+import { NavLink } from 'react-router-dom';
 
 export default function Footer() {
   const contacts = useSelector((state) => state.footer.contacts);
@@ -21,9 +22,9 @@ export default function Footer() {
           <div className="footer__content">
             <div className="footer__content-start">
               <h3 className="footer__title">Компания</h3>
-              <p className="footer__list">О нас</p>
-              <p className="footer__list">Новости</p>
-              <p className="footer__list">Помощь</p>
+              <NavLink to={'/about'} className="footer__list">О нас</NavLink>
+              <NavLink to={'/news'} className="footer__list">Новости</NavLink>
+              <NavLink to={'/help'} className="footer__list">Помощь</NavLink>
             </div>
             <div className="footer__content-center">
               <h3 className="footer__title">Контакты</h3>

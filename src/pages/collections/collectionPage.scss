@@ -1,0 +1,27 @@
+.collections {
+  .-content {
+      margin: 32px 0 16px ;
+  }
+  .-title {
+    font-size: 24px;
+    font-weight: 500;
+    margin: 18px 0;
+  }
+  .__row {
+    flex-wrap: wrap;
+    @media (max-width:320px) {
+      flex-direction: column;
+    }
+    }
+  .-wrapper {
+    width: 24.5%;
+    height: 374px;
+    @media (max-width:320px) {
+      width: 100%;
+      margin: 0 0 8px 0;
+    }
+  }
+  .-wrapper:first-child {
+    margin-bottom: 8px;
+  }
+}

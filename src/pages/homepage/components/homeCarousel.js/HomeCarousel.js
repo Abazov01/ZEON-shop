@@ -25,7 +25,7 @@ export default function HomeCarousel() {
   return (
     <div className="homeCar">
       <div className="container carousel__wrapper">
-        <AliceCarousel mouseTracking  autoPlayInterval={30000} autoPlayStrategy={'none'} infinite>
+        <AliceCarousel mouseTracking autoPlay  autoPlayInterval={3000} autoPlayStrategy={'none'} infinite>
           {arr.map((e, i) => {
             return (
               <div key={i} className="carousel__slide">
