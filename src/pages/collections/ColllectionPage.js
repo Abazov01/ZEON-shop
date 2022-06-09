@@ -41,9 +41,10 @@ export default function ColllectionPage() {
           <div className="__row" style={{display:'flex',justifyContent: four ? 'space-between':'flex-start'}}>
             {collection
               ? collection.map((e, i) => {
+                  const {img, name, id} = e
                   return (
                     <div style={{marginRight: four ? '0px': '8px'}} key={e.id} className="-wrapper">
-                      <CollectionCard img={e.img} name={e.name} />
+                      <CollectionCard img={img} name={name} id={id} />
                     </div>
                   );
                 })

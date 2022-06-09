@@ -1,11 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import SecondCard from "../secondCard/SecondCard";
 import "./offer.scss";
 
-export default function Offer({ title, data }) {
+export default function Offer({ title }) {
+  const [data, setData] = useState()
+  const get = async () => {
+    const req = await fetch("http://localhost:5000/products?name_like=The");
+    const res = await req.json();
+    setData(res)
+  };
+  useEffect(()=>{
+    get()
+  },[])
   return (
     <div className="offer">
-      <div className="container">
         <h4 className="-title">{title}</h4>
         <div className="__row">
           {data &&
@@ -27,6 +35,5 @@ export default function Offer({ title, data }) {
             })}
         </div>
       </div>
-    </div>
   );
 }

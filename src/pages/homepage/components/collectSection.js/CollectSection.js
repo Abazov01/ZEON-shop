@@ -27,7 +27,6 @@ export default function HomeSection({ title }) {
     setPage(page => page+1);
     if(collection.length >= q ) setDisplay('none')
   };
-  console.log(collection)
   return (
     <div className="collect">
       <div className="container">

@@ -7,6 +7,7 @@ import { newsReducer } from './newsReducer';
 import { aboutReducer } from './aboutReducer';
 import { collectionsReducer } from './collectionsReducer';
 import { statusReducer } from './statusReducer';
+import { DetailReducer } from './DetailReducer';
 
 export const rootReducer = combineReducers({
     footer: footerReducer,
@@ -17,4 +18,5 @@ export const rootReducer = combineReducers({
     about: aboutReducer,
     collections: collectionsReducer,
     statuses: statusReducer,
+    detail: DetailReducer,
 })

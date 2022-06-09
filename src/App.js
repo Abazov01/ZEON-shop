@@ -28,15 +28,7 @@ function App() {
   useEffect(() => {
     dispatch(getAll());
   });
-  const [data, setData] = useState([]);
-  const get = async () => {
-    const req = await fetch("http://localhost:5000/products?name_like=The");
-    const res = await req.json();
-    setData(res);
-  };
-  useEffect(()=>{
-    get()
-  },[])
+  
   return (
     <div className="App">
       <Header />

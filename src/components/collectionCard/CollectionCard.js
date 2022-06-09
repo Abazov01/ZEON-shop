@@ -1,5 +1,6 @@
 import React from "react";
 import "./collectionCard.scss";
+import { NavLink } from 'react-router-dom';
 
 export default function CollectionCard({ img, name, id}) {
   return (
@@ -9,10 +10,10 @@ export default function CollectionCard({ img, name, id}) {
           {name}
         </p>
       </div>
-      <div className="__end">
+      <NavLink to={`/collections/${id}`} className="__end">
         <p className="-text">Смотреть все</p>
         <span className="-icon"></span>
-      </div>
+      </NavLink>
     </div>
   );
 }

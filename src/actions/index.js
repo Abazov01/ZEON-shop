@@ -6,6 +6,7 @@ import { header } from "../redux/reducers/headerReducer"
 import { news } from "../redux/reducers/newsReducer"
 import { questions } from "../redux/reducers/questionsReducer"
 import { homeCollections } from '../redux/reducers/collectionsReducer';
+import { collectDet } from "../redux/reducers/DetailReducer"
 
 const API = 'https://628b6c0d667aea3a3e2ef5f3.mockapi.io/api/'
 const answer = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquet laoreet a, neque, gravida urna libero iaculis lacus. Pellentesque pellentesque massa ornare sit pellentesque elit nulla. Id est tellus maecenas ornare velit. Ut cras ut rhoncus fermentum pharetra a sit.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquet laoreet a, neque, gravida urna libero iaculis lacus. Pellentesque pellentesque massa ornare sit pellentesque elit nulla. Id est tellus maecenas ornare velit. '
@@ -26,7 +27,6 @@ export const getAll = () => async(dispatch)=>{
 
 
 export const collections = (page = 1, limit, boolean = false) => async(dispatch) =>{
-    console.log('ge');
     const res = await axios.get(`http://localhost:5000/collections?_limit=${limit}&_page=${page}`)
     if(boolean){
         dispatch(collect({data:res.data, total: res.headers['x-total-count'], limit}))
@@ -39,6 +39,15 @@ export const collections = (page = 1, limit, boolean = false) => async(dispatch)
 export const statuses = (status, limit = 4, page) => async(dispatch) => {
     const res = await axios.get(`http://localhost:5000/products?status=${status}&_page=${page}&_limit=${limit}`)
     dispatch({type: status, payload: res.data})
-    console.log('fn')
+}
+
+export const namecollect = async(id) =>{
+    const res = await axios.get(`http://localhost:5000/collections?id=${id}`)
+    return res.data[0].name
+}
+
+export const collectDetail = (name, page, limit) => async(dispatch) =>{
+    const res = await axios.get(`http://localhost:5000/products?collection=${name}&_limit=${limit}&_page=${page}`)
+    dispatch(collectDet({data:res.data, total: res.headers['x-total-count']}))
 }
 

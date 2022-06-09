@@ -1,0 +1,22 @@
+.collectDetail{
+    .-title{
+        margin-top: 32px;
+        font-size: 24px;
+        font-weight: 500;
+    }
+    .-row{
+        display: flex;
+        flex-wrap: wrap;
+        margin: 18px 0 8px 0;
+        .-wrapper{
+            width: 24.5%;
+            margin-bottom: 8px;
+            height: 536px;
+            @media (max-width:320px) {
+                width: 100%;
+            }
+        }
+
+    }
+
+}
