@@ -23,11 +23,11 @@ const Send = ({name, setName, valid, setValid, setPhone}) => {
       <div className="send__body">
         <div className="send__body-name">
           <img  src={nameimg} alt="" />
-          <input autoFocus onChange={e => setName(e.target.value)} type="text" />
+          <input autoFocus onChange={e => setName(e.target.value)} type="text" placeholder="Как к Вам обращаться?"/>
         </div>
         <div className="send__body-phone">
           <img  src={phoneimg} alt="" />
-          <input onChange={e => setPhone(e.target.value)} type="number" />
+          <input  onChange={e => setPhone(e.target.value)} type="number" placeholder="Номер телефона"/>
         </div>
         <button onClick={()=>valid ? order(): null} style={{ background: valid ? 'black':"gray" }} className="send__body-btn">
           Заказать звонок

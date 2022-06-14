@@ -19,11 +19,14 @@ export default function ChatModal({ chat, setChat, setMess }) {
             setValid(true)
         }
     },[name, phone])
-    
+    const modalStyle = {
+      width: isSend ? '328px':null,
+      padding: isSend ? '28px 24px' : null
+    }
   return (
     <div className="chatModal" style={{ display: chat ? "block" : "none" }}>
-      <div onClick={() =>{ setChat(false);setMess(false);dispatch(isSended(false))}} className="overlay">
-        <div onClick={e=>e.stopPropagation()} className="modal-content">
+      <div onClick={() =>{ setChat(false);setMess(false)}} className="overlay">
+        <div style={modalStyle} onClick={e=>e.stopPropagation()} className="modal-content">
           {isSend ? <Thanks setChat={setChat} setMess={setMess}/> : <Send name={name} setName={setName} phone={phone} setPhone={setPhone} valid={valid} setValid={setValid}/>}
           <div onClick={() =>{ setChat(false);setMess(false)}} className="modal-close">
             <img src={close} alt="" />

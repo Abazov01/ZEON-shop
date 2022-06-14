@@ -22,9 +22,9 @@ export default function Footer() {
           <div className="footer__content">
             <div className="footer__content-start">
               <h3 className="footer__title">Компания</h3>
-              <NavLink to={'/about'} className="footer__list">О нас</NavLink>
-              <NavLink to={'/news'} className="footer__list">Новости</NavLink>
-              <NavLink to={'/help'} className="footer__list">Помощь</NavLink>
+              <NavLink onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} to={'/about'} className="footer__list">О нас</NavLink>
+              <NavLink onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} to={'/news'} className="footer__list">Новости</NavLink>
+              <NavLink onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} to={'/help'} className="footer__list">Помощь</NavLink>
             </div>
             <div className="footer__content-center">
               <h3 className="footer__title">Контакты</h3>

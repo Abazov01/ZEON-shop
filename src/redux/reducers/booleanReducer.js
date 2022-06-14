@@ -3,7 +3,7 @@ const FAVORITE = "FAVORITE"
 const IS_SENDED = 'IS_SENDED'
 const initialState = {
     favorite: false,
-    basket: true,
+    basket: false,
     isSended: false
 }
 

@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import "./collectDetail.scss";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { collectDetail, namecollect } from "../../actions";
+import { collectDetail, idToName } from "../../actions";
 import MainCard from "../../components/mainCard/MainCard";
 import Paginate from "../../components/paginate/Paginate";
 import Offer from './../../components/offer/Offer';
@@ -25,7 +25,7 @@ export default function CollectDetail() {
   }
   useEffect(() => {
     async function fn() {
-      let hook = await namecollect(id);
+      let hook = await idToName(id);
       dispatch(collectDetail(hook, page, limit))
       console.log(name);
       setName(hook)
@@ -34,13 +34,12 @@ export default function CollectDetail() {
     
   }, [page]);
   useEffect(()=>{
-    if(products.length % 4 > 0) {
+    if(products?.length % 4 > 0) {
       setFour(false) 
     }else {
       setFour(true)
     }
-  },[products, page])
-  
+  },[products])
 
   return (
     <div className="collectDetail">
@@ -49,7 +48,7 @@ export default function CollectDetail() {
         <div style={{justifyContent: four ? 'space-between' : 'start'}} className="-row">
           {products &&
             products.map((e, i) => {
-              const { name, images, price, discount, id, size, colors } = e;
+              const { name, images, price, discount, id, size, colors,collection } = e;
               return (
                 <div style={{marginRight: four ? 0 : 8}} key={i} className="-wrapper">
                   <MainCard
@@ -60,6 +59,7 @@ export default function CollectDetail() {
                     id={id}
                     size={size}
                     colors={colors}
+                    collectName={collection}
                   />
                 </div>
               );

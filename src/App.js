@@ -1,50 +1,61 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import "./App.scss";
-import { getAll } from "./actions/index";
+import { cardIsEmpty, favIsEmpty, getAll } from "./actions/index";
 import Footer from "./components/footer/Footer";
 import Header from "./components/header/Header";
 import Help from "./pages/help/Help";
 import News from "./pages/news/News";
-import Advantage from "./pages/homepage/components/advantage/Advantage";
-import FixModal from "./components/fixedModal/FixModal";
 import Public from "./pages/public/Public";
-import HomeCarousel from "./pages/homepage/components/homeCarousel.js/HomeCarousel";
-import MainCard from "./components/mainCard/MainCard";
-import { cardArr } from "./test";
 import About from "./pages/aboutpage/About";
-import Paginate from "./components/paginate/Paginate";
-import CollectionCard from "./components/collectionCard/CollectionCard";
 import ColllectionPage from "./pages/collections/ColllectionPage";
-import HomeSection from "./pages/homepage/components/homeSection/HomeSection";
-import Home from './pages/homepage/Home';
-import SecondCard from './components/secondCard/SecondCard';
-import Offer from "./components/offer/Offer";
 import { Route, Routes } from "react-router-dom";
-import CollectDetail from './pages/collectDetail/CollectDetail';
+import CollectDetail from "./pages/collectDetail/CollectDetail";
+import Detail from "./pages/detailPage/Detail";
+import Favorite from "./pages/favorite/Favorite";
+import Home from "./pages/homepage/Home";
+import Result from "./pages/result/Result";
+import Basket from "./pages/basket/Basket";
+import { card, favorite } from "./redux/reducers/booleanReducer";
 
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getAll());
   });
-  
+
+  useEffect(() => {
+    const cardd = cardIsEmpty()
+    const fav = favIsEmpty()
+    if (cardd) {
+      dispatch(card(true));
+    } else{
+      dispatch(card(false));
+    }
+
+    if (fav) {
+      dispatch(favorite(true));
+    } else{
+      dispatch(favorite(false));
+    }
+  });
+
   return (
     <div className="App">
       <Header />
-        <Routes>
-          <Route path="/" element={<Home/>}/>
-          <Route path="/news" element={<News/>}/>
-          <Route path="/about" element={<About/>}/>
-          <Route path="/collections" element={<ColllectionPage/>}/>
-          <Route path="/collections/:id" element={<CollectDetail/>}/>
-          <Route path="/collections/:id/:productid" element={<CollectDetail/>}/>
-          <Route path="/help" element={<Help/>}/>
-          <Route path="/public" element={<Public/>}/>
-          <Route path="/result/:name" element={<Public/>}/>
-          <Route path="/basket" element={<Public/>}/>
-          <Route path="/favorite" element={<Public/>}/> 
-        </Routes>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/news" element={<News />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/collections" element={<ColllectionPage />} />
+        <Route path="/collections/:id" element={<CollectDetail />} />
+        <Route path="/collections/:id/:productid" element={<Detail />} />
+        <Route path="/help" element={<Help />} />
+        <Route path="/public" element={<Public />} />
+        <Route path="/result/:name" element={<Result />} />
+        <Route path="/basket" element={<Basket />} />
+        <Route path="/favorite" element={<Favorite />} />
+      </Routes>
       <Footer />
     </div>
   );

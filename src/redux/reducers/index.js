@@ -8,6 +8,8 @@ import { aboutReducer } from './aboutReducer';
 import { collectionsReducer } from './collectionsReducer';
 import { statusReducer } from './statusReducer';
 import { DetailReducer } from './DetailReducer';
+import { searchReducer } from './searchReducer';
+import { phonsReducer } from './phonsReducer';
 
 export const rootReducer = combineReducers({
     footer: footerReducer,
@@ -19,4 +21,6 @@ export const rootReducer = combineReducers({
     collections: collectionsReducer,
     statuses: statusReducer,
     detail: DetailReducer,
+    searchResult: searchReducer,
+    phons: phonsReducer,
 })

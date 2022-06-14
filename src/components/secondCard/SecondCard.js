@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./secondCard.scss";
 import love from "../../assets/home/heart.png";
 import loveRed from "../../assets/home/heart-red.png";
+import { fromToFav, isFav, nameToId } from "../../actions";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from 'react-redux';
 
 const HiddenImgs = ({ images, setMain }) => {
   return (
@@ -35,17 +38,37 @@ export default function SecondCard({
   size,
   colors,
   id,
+  collectName,
+  setAction
 }) {
   const [index, setIndex] = useState(0);
   const [fav, setFav] = useState(false);
   const [hover, setHover] = useState("none");
+  const [cId, setCId] = useState();
+  const navigate = useNavigate();
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    const fn = async () => {
+      const collectId = await nameToId(collectName);
+      setCId(collectId);
+    };
+    fn();
+  }, []);
+
   const scrollWidth = images && 100 / images.length;
   let newPrice;
   if (discount > 0) {
     newPrice = price - Math.floor((price / 100) * discount);
   }
   return (
-    <div className="secondCard">
+    <div
+      onClick={() => {
+        navigate(`/collections/${cId}/${id}`);
+        window.location.reload();
+      }}
+      className="secondCard"
+    >
       <div
         onMouseMove={() => setHover("block")}
         onMouseLeave={() => setHover("none")}
@@ -54,8 +77,20 @@ export default function SecondCard({
         <img src={images && images[index]} alt="..." />
         <HiddenImgs images={images} setMain={setIndex} />
         {discount > 0 ? <Discount discount={discount} /> : null}
-        <div style={{ display: hover }} className="-favicon">
-          <img src={fav ? loveRed : love} alt="" />
+        <div
+          onClick={(e) => e.stopPropagation()}
+          style={{ display: hover }}
+          className="-favicon"
+        >
+          <img
+            onClick={(e) => {
+              fromToFav(id, dispatch);
+              setFav(isFav(id));
+              setAction(a=>!a)
+            }}
+            src={fav ? loveRed : love}
+            alt=""
+          />
         </div>
         <div style={{ display: hover }} className="-scroll">
           <div

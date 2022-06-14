@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./mainCard.scss";
 import love from "../../assets/home/heart.png";
 import loveRed from "../../assets/home/heart-red.png";
+import { NavLink, useNavigate } from "react-router-dom";
+import { fromToFav, isFav, nameToId } from "../../actions";
+import { useDispatch } from "react-redux";
 
 const HiddenImgs = ({ images, setMain }) => {
   return (
@@ -35,29 +38,63 @@ export default function MainCard({
   size,
   colors,
   id,
+  collectName,
+  setAction,
 }) {
   const [index, setIndex] = useState(0);
   const [fav, setFav] = useState(false);
   const [hover, setHover] = useState("none");
+  const [cId, setCId] = useState();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const scrollWidth = images && 100 / images.length;
   let newPrice;
   if (discount > 0) {
     newPrice = price - Math.floor((price / 100) * discount);
   }
+
+  useEffect(() => {
+    const fn = async () => {
+      const collectId = await nameToId(collectName);
+      setCId(collectId);
+    };
+    fn();
+    setFav(isFav(id));
+    isFav(id) ? setHover("block") : setHover('none')
+  }, []);
+
   return (
-    <div className="mainCard">
+    <div
+      onClick={() => navigate(`/collections/${cId}/${id}`)}
+      className="mainCard"
+    >
       <div
         onMouseMove={() => setHover("block")}
-        onMouseLeave={() => setHover("none")}
+        onMouseLeave={() => isFav(id) ? setHover('block'):setHover("none")}
         className="__start"
       >
         <img src={images && images[index]} alt="..." />
         <HiddenImgs images={images} setMain={setIndex} />
         {discount > 0 ? <Discount discount={discount} /> : null}
-        <div style={{ display: hover }} className="-favicon">
-          <img src={fav ? loveRed : love} alt="" />
+        <div
+          onClick={(e) => e.stopPropagation()}
+          style={{ display: hover }}
+          className="-favicon"
+        >
+          <img
+            onClick={() => {
+              fromToFav(id, dispatch);
+              setFav(isFav(id));
+              isFav(id) ? setHover("block") : setHover('none')
+              setAction && setAction((a) => !a);
+              // window.location.reload()
+            }}
+            src={fav ? loveRed : love}
+            alt=""
+          />
         </div>
-        <div  style={{ display: hover }} className="-scroll">
+        <div style={{ display: hover }} className="-scroll">
           <div
             style={{
               width: scrollWidth + "%",
@@ -83,7 +120,13 @@ export default function MainCard({
             colors.map((e, i) => {
               return (
                 <div key={i} className="-wrapper">
-                  <div style={{ background: e }} className="-color"></div>
+                  <div
+                    style={{
+                      background: e,
+                      border: e == "#FFFFFF" && ".5px solid #e7e7e7",
+                    }}
+                    className="-color"
+                  ></div>
                 </div>
               );
             })}

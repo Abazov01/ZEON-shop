@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./header.scss";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import glass from "../../assets/header/search.png";
 import shop from "../../assets/header/shop.png";
 import shopnot from "../../assets/header/shop-not.png";
@@ -10,19 +10,26 @@ import MenuModal from "./MenuModal";
 import { NavLink, useNavigate } from "react-router-dom";
 
 export default function Header() {
+  // const dispatch = useDispatch()
   const navigate = useNavigate()
   const [menu, setMenu] = useState(false);
   const [value, setValue] = useState('')
   const header = useSelector((state) => state.header);
   const favorite = useSelector((state) => state.booleans.favorite);
   const basket = useSelector((state) => state.booleans.basket);
+  
+  
   const search = (e) => {
     e.preventDefault();
     if(value){
       navigate(`/result/${value}`)
+      window.location.reload()
     }
     setValue('')
   };
+  
+
+  
   if (menu) {
     window.onscroll = function () {
       return false;

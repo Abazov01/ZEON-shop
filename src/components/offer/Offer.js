@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import SecondCard from "../secondCard/SecondCard";
 import "./offer.scss";
 
-export default function Offer({ title }) {
+export default function Offer({ title ,setAction}) {
   const [data, setData] = useState()
   const get = async () => {
     const req = await fetch("http://localhost:5000/products?name_like=The");
@@ -18,9 +18,9 @@ export default function Offer({ title }) {
         <div className="__row">
           {data &&
             data.map((e, i) => {
-              const { id, images, colors, price, name, discount, size } = e;
+              const { id, images, colors, price, name, discount, size,collection } = e;
               return (
-                <div className="-wrapper">
+                <div key={i} className="-wrapper">
                   <SecondCard
                     id={id}
                     images={images}
@@ -29,6 +29,8 @@ export default function Offer({ title }) {
                     name={name}
                     discount={discount}
                     size={size}
+                    collectName={collection}
+                    setAction = {setAction}
                   />
                 </div>
               );

@@ -30,7 +30,7 @@ export default function HomeSection({ title }) {
         <div className="-content">
           {products &&
             products.map((e, i) => {
-              const { name, images, price, discount, id, size, colors } = e;
+              const { name, images, price, discount, id, size, colors,collection } = e;
               return (
                 <div key={id} className="-wrapper">
                   <MainCard
@@ -41,6 +41,7 @@ export default function HomeSection({ title }) {
                     id={id}
                     size={size}
                     colors={colors}
+                    collectName={collection}
                   />
                 </div>
               );
