@@ -16,7 +16,7 @@ export default function Basket() {
   const dispatch = useDispatch();
   const [data, setData] = useState();
   const [upload, setUpload] = useState();
-  const [modal, setModal] = useState(true)
+  const [modal, setModal] = useState()
   useEffect(() => {
     setData(getCard());
   }, [upload]);
@@ -107,7 +107,7 @@ export default function Basket() {
               })
             ) : (
               <div>
-                <h3>Корзина</h3> <p>У Вас пока нет товаров в корзине</p>
+                <h3 className="-title">Корзина</h3 > <p className="-text">У Вас пока нет товаров в корзине</p>
               </div>
             )}
           </div>

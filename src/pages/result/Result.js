@@ -13,9 +13,8 @@ export default function Result() {
   const { name } = useParams();
   const data = useSelector((state) => state.searchResult.data);
   const total = useSelector((state) => state.searchResult.total);
-  let limit = 8
+  let limit = window.innerWidth < 500 ? 4 : 8
   const [page, setPage] = useState()
-console.log(page)
   useEffect(() => {
     dispatch(searchByName(name, limit, page));
   }, [page]);

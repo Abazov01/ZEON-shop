@@ -10,8 +10,10 @@ import { collectDet } from "../redux/reducers/DetailReducer";
 import { card, favorite } from "./../redux/reducers/booleanReducer";
 import { search } from "../redux/reducers/searchReducer";
 import {phone} from '../redux/reducers/phonsReducer.js'
+import { prompting } from "../redux/reducers/promptingReducer";
 
 const API = "https://628b6c0d667aea3a3e2ef5f3.mockapi.io/api/";
+const LOCAL_API = 'http://localhost:5000'
 const answer =
   "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquet laoreet a, neque, gravida urna libero iaculis lacus. Pellentesque pellentesque massa ornare sit pellentesque elit nulla. Id est tellus maecenas ornare velit. Ut cras ut rhoncus fermentum pharetra a sit.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquet laoreet a, neque, gravida urna libero iaculis lacus. Pellentesque pellentesque massa ornare sit pellentesque elit nulla. Id est tellus maecenas ornare velit. ";
 const newsObj = {
@@ -37,13 +39,22 @@ export const getAll = () => async (dispatch) => {
   dispatch(phone(res.data[0].phons))
 };
 
+
+export const prompts = (name)=>async(dispatch) => {
+  let res = await axios.get(`${LOCAL_API}/products?name_like=${name}`)
+  res = res.data.map(e => e.name)
+  res = new Set(res)
+  dispatch(prompting(res))
+}
+
+
 // =====================================>>>COLLECTIONS<<<====================
 
 export const collections =
   (page = 1, limit, boolean = false) =>
   async (dispatch) => {
     const res = await axios.get(
-      `http://localhost:5000/collections?_limit=${limit}&_page=${page}`
+      `${LOCAL_API}/collections?_limit=${limit}&_page=${page}`
     );
     if (boolean) {
       dispatch(
@@ -59,7 +70,7 @@ export const statuses =
   (status, limit = 4, page) =>
   async (dispatch) => {
     const res = await axios.get(
-      `http://localhost:5000/products?status=${status}&_page=${page}&_limit=${limit}`
+      `${LOCAL_API}/products?status=${status}&_page=${page}&_limit=${limit}`
     );
     dispatch({ type: status, payload: res.data });
   };
@@ -67,31 +78,46 @@ export const statuses =
 // =====================================>>>DETAIL<<<====================
 
 export const idToName = async (id) => {
-  const res = await axios.get(`http://localhost:5000/collections?id=${id}`);
+  const res = await axios.get(`${LOCAL_API}/collections?id=${id}`);
   return res.data[0].name;
 };
 
+export const bread = (arr) => async(dispatch) =>{
+  arr.shift()
+  if(arr[0] == 'result') arr.pop() 
+  if(arr.length == 2){
+    const res = await axios.get(`${LOCAL_API}/collections?id=${+arr[1]}`)
+    arr[1] = await res.data[0].name
+  }else if(arr.length == 3){
+    const coll = await axios.get(`${LOCAL_API}/collections?id=${+arr[1]}`)
+    const prod = await axios.get(`${LOCAL_API}/products?id=${+arr[2]}`)
+    arr[1] = await coll.data[0].name
+    arr[2] = await prod.data[0].name
+  }
+  dispatch({type: 'BREAD', payload: arr})
+}
+
 export const collectDetail = (name, page, limit) => async (dispatch) => {
   const res = await axios.get(
-    `http://localhost:5000/products?collection=${name}&_limit=${limit}&_page=${page}`
+    `${LOCAL_API}/products?collection=${name}&_limit=${limit}&_page=${page}`
   );
   dispatch(collectDet({ data: res.data, total: res.headers["x-total-count"] }));
 };
 
 export const nameToId = async (name) => {
-  const res = await axios.get(`http://localhost:5000/collections?name=${name}`);
+  const res = await axios.get(`${LOCAL_API}/collections?name=${name}`);
   return res.data[1].id;
 };
 
 export const getDetail = async (id) => {
-  const res = await axios.get(`http://localhost:5000/products?id=${id}`);
+  const res = await axios.get(`${LOCAL_API}/products?id=${id}`);
   return res.data[0];
 };
 
 // =====================================>>>FAVORITE<<<====================
 
 export const fromToFav = (id, dispatch) => {
-  let arr = JSON.parse(localStorage.getItem("fav"));
+  let arr = JSON.parse(localStorage.getItem("fav")) || [];
   const bool = arr.includes(id);
   if (bool) {
     arr = arr.filter((e) => e !== id);
@@ -102,13 +128,12 @@ export const fromToFav = (id, dispatch) => {
     dispatch(favorite(true));
   } else {
     dispatch(favorite(false));
-    // console.log(false);
   }
   localStorage.setItem("fav", JSON.stringify(arr));
 };
 
 export const isFav = (id) => {
-  const arr = JSON.parse(localStorage.getItem("fav"));
+  const arr = JSON.parse(localStorage.getItem("fav")) || [];
   if (id) {
     return arr.includes(id);
   } else {
@@ -119,13 +144,13 @@ export const isFav = (id) => {
 export const idToProduct = async (ids) => {
   if (ids) {
     return Promise.all(
-      ids.map(async (id) => axios.get(`http://localhost:5000/products/${id}`))
+      ids.map(async (id) => axios.get(`${LOCAL_API}/products/${id}`))
     ).then((values) => values);
   }
 };
 
 export const favIsEmpty = () => {
-  const arr = JSON.parse(localStorage.getItem("fav"));
+  const arr = JSON.parse(localStorage.getItem("fav")) || [];
   if (arr.length > 0) return true;
   return false;
 };
@@ -133,36 +158,29 @@ export const favIsEmpty = () => {
 // =====================================>>>CARD<<<====================
 
 const isHave = (local, data) => {
-  let id = local.map((e) => e.id);
-  let color = local.map((e) => e.color);
-  id = id.includes(data.id);
-  color = color.includes(data.color);
-  if (id && color) return true;
+  let color = local.filter(e => e.id == data.id).filter(e => e.color == data.color)
+  if (color.length > 0) return true;
   return false;
 };
-
 export const fromOrToCard = (data, dispatch) => {
-  const filter = (e, fromToCard) => {
-    if (e.id == fromToCard.id && e.color == fromToCard.color) {
-      return false;
-    }
-    return true;
-  };
 
-  let local = JSON.parse(localStorage.getItem("card"));
+  let local = JSON.parse(localStorage.getItem("card")) || [];
   if (local) {
     if (isHave(local, data)) {
-      // console.log("local", local);
-      local = local.filter((e) => filter(e, data));
+      local = local.filter((e) => e.id !== data.id && e.color !== data.color);
     } else {
       local.push(data);
     }
   }
+
+
   if (local.length > 0) {
     dispatch(card(true));
   } else {
     dispatch(card(false));
   }
+
+
   localStorage.setItem("card", JSON.stringify(local));
 };
 
@@ -172,24 +190,22 @@ export const isCard = (id, color) => {
 };
 
 export const getCard = () => {
-  return JSON.parse(localStorage.getItem("card"));
+  return JSON.parse(localStorage.getItem("card")) || [];
 };
 
 export const increment = (data) => {
-  const local = JSON.parse(localStorage.getItem("card"));
+  const local = JSON.parse(localStorage.getItem("card")) || [];
   local.map((e) => {
     if (e.id == data.id && e.color == data.color) {
-      // console.log("inc");
       e.count++;
     }
   });
   localStorage.setItem("card", JSON.stringify(local));
 };
 export const decrement = (data) => {
-  const local = JSON.parse(localStorage.getItem("card"));
+  const local = JSON.parse(localStorage.getItem("card")) || [];
   local.map((e) => {
     if (e.id == data.id && e.color == data.color) {
-      // console.log("dec");
 
       e.count--;
     }
@@ -197,10 +213,16 @@ export const decrement = (data) => {
   localStorage.setItem("card", JSON.stringify(local));
 };
 export const cardIsEmpty = () => {
-  const arr = JSON.parse(localStorage.getItem("card"));
+  const arr = JSON.parse(localStorage.getItem("card")) || [];
   if (arr.length > 0) return true;
   return false;
 };
+
+export const clearCard = () => {
+  const arr = JSON.parse(localStorage.getItem('card'))
+  arr.length = 0
+  localStorage.setItem('card', JSON.stringify(arr))
+}
 
 // =========================TOTAL==========ORDER==========================
 export const lineCount = () => {
@@ -223,7 +245,7 @@ export const price = () => {
 
 export const discount = () => {
   let arr = JSON.parse(localStorage.getItem("card"));
-  arr = Array.isArray(arr) && arr.length > 0 ? arr.map((e) => (e.price / 100) * e.discount).reduce((a, b) => a + b) : null;
+  arr = Array.isArray(arr) && arr.length > 0 ? arr.map((e) => (e.price / 100) * e.discount * e.count).reduce((a, b) => a + b) : null;
   return Math.floor(arr)
 };
 
@@ -231,7 +253,7 @@ export const discount = () => {
 
 export const searchByName = (name, limit, page) => async (dispatch) => {
   const res = await axios.get(
-    `http://localhost:5000/products?name_like=${name}&_limit=${limit}&_page=${page}`
+    `${LOCAL_API}/products?name_like=${name}&_limit=${limit}&_page=${page}`
   );
   dispatch(search({ data: res.data, total: res.headers["x-total-count"] }));
 };

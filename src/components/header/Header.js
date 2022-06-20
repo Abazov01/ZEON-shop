@@ -7,43 +7,52 @@ import shopnot from "../../assets/header/shop-not.png";
 import heartnot from "../../assets/header/heart-not.png";
 import heart from "../../assets/header/heart.png";
 import MenuModal from "./MenuModal";
+import X from "../../assets/modal/X.png";
 import { NavLink, useNavigate } from "react-router-dom";
+import { prompts } from "../../actions";
 
 export default function Header() {
-  // const dispatch = useDispatch()
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [menu, setMenu] = useState(false);
-  const [value, setValue] = useState('')
+  const [value, setValue] = useState("");
+  const [searchh, setSearch] = useState(false);
+
   const header = useSelector((state) => state.header);
   const favorite = useSelector((state) => state.booleans.favorite);
   const basket = useSelector((state) => state.booleans.basket);
-  
-  
+  let hints = useSelector((s) => s.hints);
+  hints = hints && Array.from(hints);
+
+
   const search = (e) => {
     e.preventDefault();
-    if(value){
-      navigate(`/result/${value}`)
-      window.location.reload()
+    if (value) {
+      navigate(`/result/${value}`);
+      window.location.reload();
     }
-    setValue('')
+    setValue("");
   };
-  
 
-  
   if (menu) {
     window.onscroll = function () {
       return false;
     };
   }
+
+  const handleChange = (e) => {
+    setValue(e.target.value);
+    dispatch(prompts(e.target.value));
+  };
   return (
     <div className="header">
       <div className="header__block-1">
         <div className="container">
           <div className="header__row">
             <ul className="header__1-left">
-              <NavLink to={'/about'}>О нас</NavLink>
-              <NavLink to={'/collections'}>Коллекции</NavLink>
-              <NavLink to={'/news'}>Новости</NavLink>
+              <NavLink to={"/about"}>О нас</NavLink>
+              <NavLink to={"/collections"}>Коллекции</NavLink>
+              <NavLink to={"/news"}>Новости</NavLink>
             </ul>
             <div className="header__1-right">
               <span>Тел: </span>
@@ -60,7 +69,7 @@ export default function Header() {
                 <span></span>
               </div>
             </div>
-            <NavLink to={'/'} className="header__2-start">
+            <NavLink to={"/"} className="header__2-start">
               <img src={header.logo} alt="" />
             </NavLink>
             <div className="header__2-form">
@@ -69,30 +78,64 @@ export default function Header() {
                   type="text"
                   className="header__form-input"
                   placeholder="Поиск"
-                  onChange={(e) => setValue(e.target.value)}
-                  value={value}
+                  onChange={handleChange}
+                  // value={value}
                 />
                 <button className="header__form-btn">
                   <img src={glass} alt="" />
                 </button>
+                {hints && hints.length > 0 && value.length > 0 && (
+                  <div className="hints-wrapper">
+                    {hints.map((e, i) => {
+                      return (
+                        <div
+                          onClick={() => {navigate(`/result/${e}`);window.location.reload()}}
+                          className="-child"
+                          key={i}
+                        >
+                          {e}
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
               </form>
             </div>
             <div className="header__2-end">
               <div className="header__end">
-                <NavLink to={'/favorite'} className="header__end-favorite">
+                <NavLink to={"/favorite"} className="header__end-favorite">
                   <img src={favorite ? heartnot : heart} alt="" />
                   Избранное
                 </NavLink>
-                <NavLink to={'/basket'} className="header__end-card">
+                <NavLink to={"/basket"} className="header__end-card">
                   <img src={basket ? shopnot : shop} alt="" />
                   Корзина
                 </NavLink>
               </div>
             </div>
-            <div className="header__modal">
-              <img src={glass} alt="" />
+            <div onClick={() => setSearch((e) => !e)} className="header__modal">
+              <img src={searchh ? X : glass} alt="" />
             </div>
-            <MenuModal menu={menu} setMenu={setMenu}/>
+            <MenuModal menu={menu} setMenu={setMenu} />
+            <form
+              onSubmit={search}
+              style={{ display: searchh ? "block" : "none" }}
+              className="search-modal"
+            >
+              <input
+                type="text"
+                placeholder="Поиск"
+                onChange={handleChange}
+                value={value}
+                list={"datalist"}
+              />
+              <datalist id="datalist" className="datalist">
+                <option value="Nike" />
+                <option value="Nike Air" />
+                <option value="Adidas light Exo" />
+                <option value="Li Ning" />
+              </datalist>
+            </form>
           </div>
         </div>
       </div>

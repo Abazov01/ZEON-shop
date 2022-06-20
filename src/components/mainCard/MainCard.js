@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./mainCard.scss";
-import love from "../../assets/home/heart.png";
+import lovee from "../../assets/home/heart.png";
 import loveRed from "../../assets/home/heart-red.png";
 import { NavLink, useNavigate } from "react-router-dom";
 import { fromToFav, isFav, nameToId } from "../../actions";
@@ -40,11 +40,13 @@ export default function MainCard({
   id,
   collectName,
   setAction,
+  home
 }) {
   const [index, setIndex] = useState(0);
   const [fav, setFav] = useState(false);
   const [hover, setHover] = useState("none");
   const [cId, setCId] = useState();
+  const [love, setLove] = useState('none')
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -62,16 +64,33 @@ export default function MainCard({
     fn();
     setFav(isFav(id));
     isFav(id) ? setHover("block") : setHover('none')
+    leave()
   }, []);
 
+  
+  useEffect(()=>{
+    if(window.innerWidth < 520) setLove('block')
+  })
+
+  
+  const leave = () => {
+    if(isFav(id)){
+      setHover('none')
+      setLove('block')
+    }else{
+      setHover('none')
+      setLove('none')
+    }
+  }
+  const favorite = home ? fav : isFav(id)
   return (
     <div
-      onClick={() => navigate(`/collections/${cId}/${id}`)}
+      onClick={() => {navigate(`/collections/${cId}/${id}`);window.scrollTo({top:0, behavior:'smooth'})}}
       className="mainCard"
     >
       <div
-        onMouseMove={() => setHover("block")}
-        onMouseLeave={() => isFav(id) ? setHover('block'):setHover("none")}
+        onMouseMove={() => {setHover("block");setLove('block')}}
+        onMouseLeave={() => leave()}
         className="__start"
       >
         <img src={images && images[index]} alt="..." />
@@ -79,18 +98,17 @@ export default function MainCard({
         {discount > 0 ? <Discount discount={discount} /> : null}
         <div
           onClick={(e) => e.stopPropagation()}
-          style={{ display: hover }}
+          style={{ display: love }}
           className="-favicon"
         >
           <img
             onClick={() => {
               fromToFav(id, dispatch);
               setFav(isFav(id));
-              isFav(id) ? setHover("block") : setHover('none')
+              isFav(id) ? setLove("block") : setLove('none')
               setAction && setAction((a) => !a);
-              // window.location.reload()
             }}
-            src={fav ? loveRed : love}
+            src={ favorite ? loveRed : lovee}
             alt=""
           />
         </div>

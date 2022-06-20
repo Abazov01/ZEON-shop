@@ -27,6 +27,8 @@ export default function Detail() {
     const fn = async () => {
       const data = await getDetail(productid);
       setData(data);
+      setFav(isFav(productid));
+      setCard(isCard(productid, currColor));
     };
     fn();
   }, []);
@@ -64,14 +66,11 @@ export default function Detail() {
     img,
     count
   ) => {
-    if (color) {
-      console.log("addOrRemoveCard");
       fromOrToCard({ id, color, name, price, discount, size, img, count }, dispatch);
       setCard(isCard(id, currColor));
-    } else {
-      alert("Вы не выбрали цвет! Пожалуйста, укажите какой цвет вы выбираете.");
-    }
+   
   };
+  
   return (
     <div className="detail">
       <div className="container">

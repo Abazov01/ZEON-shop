@@ -17,8 +17,6 @@ export default function CollectDetail() {
   const { id } = useParams();
   const products = useSelector((state) => state.detail.collectDet);
   const total = useSelector((state) => state.detail.total);
-  // console.log(products);
-  console.log(total);
   let limit = 12
   if(window.innerWidth <= 320){
     limit = 4
@@ -27,7 +25,6 @@ export default function CollectDetail() {
     async function fn() {
       let hook = await idToName(id);
       dispatch(collectDetail(hook, page, limit))
-      console.log(name);
       setName(hook)
     }
     fn();

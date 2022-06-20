@@ -42,6 +42,7 @@ export default function HomeSection({ title }) {
                     size={size}
                     colors={colors}
                     collectName={collection}
+                    home
                   />
                 </div>
               );

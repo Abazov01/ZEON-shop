@@ -1,0 +1,26 @@
+.bread {
+  background: #fff;
+  .-content {
+    padding: 22px 0;
+    font-size: 14px;
+    font-weight: 500;
+    display: flex;
+    @media (max-width: 320px) {
+      font-size: 12px;
+      overflow-x: auto;
+    }
+    a {
+        white-space: nowrap;
+    }
+    .one{
+      color: #979797;
+      cursor: pointer;
+    }
+    a:last-child {
+      color: #979797;
+    }
+    span {
+      margin: 0 7px;
+    }
+  }
+}

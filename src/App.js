@@ -17,12 +17,14 @@ import Home from "./pages/homepage/Home";
 import Result from "./pages/result/Result";
 import Basket from "./pages/basket/Basket";
 import { card, favorite } from "./redux/reducers/booleanReducer";
+import BreadCrumbs from "./components/breadCrumb/BreadCrumbs";
 
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getAll());
   });
+  // localStorage.setItem('card', JSON.stringify([]))
 
   useEffect(() => {
     const cardd = cardIsEmpty()
@@ -43,6 +45,7 @@ function App() {
   return (
     <div className="App">
       <Header />
+      <BreadCrumbs/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/news" element={<News />} />

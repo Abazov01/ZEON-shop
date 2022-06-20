@@ -8,6 +8,7 @@ import heart from "../../assets/header/heart.png";
 import close from "../../assets/modal/X.png";
 import { Modal } from "./../fixedModal/FixModal";
 import ChatModal from "../chatModal/ChatModal";
+import { NavLink } from 'react-router-dom';
 
 export default function MenuModal({ menu, setMenu }) {
   const [chat, setChat] = useState();
@@ -38,18 +39,18 @@ export default function MenuModal({ menu, setMenu }) {
               </div>
             </div>
             <div className="-body">
-              <div className="-first">О нас</div>
-              <div className="-first">Новости</div>
-              <div className="-first">Коллекции</div>
+              <NavLink onClick={() => setMenu(false)} to={'/about'} className="-first">О нас</NavLink>
+              <NavLink  onClick={() => setMenu(false)} to={'/news'} className="-first">Новости</NavLink>
+              <NavLink  onClick={() => setMenu(false)} to={'/collections'} className="-first">Коллекции</NavLink>
               <span></span>
-              <div className="-second">
+              <NavLink  onClick={() => setMenu(false)} to={'/favorite'} className="-second">
                 <img src={favorite ? heartnot : heart} alt="" />
                 Избранное
-              </div>
-              <div className="-second">
+              </NavLink>
+              <NavLink  onClick={() => setMenu(false)} to={'/basket'} className="-second">
                 <img src={basket ? shopnot : shop} alt="" />
                 Корзина
-              </div>
+              </NavLink>
             </div>
           </div>
           <div className="-bottom">

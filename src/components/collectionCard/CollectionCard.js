@@ -10,7 +10,7 @@ export default function CollectionCard({ img, name, id}) {
           {name}
         </p>
       </div>
-      <NavLink to={`/collections/${id}`} className="__end">
+      <NavLink onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} to={`/collections/${id}`} className="__end">
         <p className="-text">Смотреть все</p>
         <span className="-icon"></span>
       </NavLink>

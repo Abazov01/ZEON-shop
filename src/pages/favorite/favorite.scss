@@ -10,10 +10,16 @@
     .-row{
         display: flex;
         flex-wrap: wrap;
+        @media (max-width:320px) {
+            flex-direction: column;
+        }
         .-wrapper{
             width: 24.32%;
             margin-right: 7px;
             margin-bottom: 7px;
+            @media (max-width:320px) {
+                width: 100%;
+            }
         }
     }
     

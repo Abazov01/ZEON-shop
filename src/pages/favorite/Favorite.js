@@ -9,14 +9,15 @@ import { idToProduct } from "./../../actions/index";
 import MainCard from "../../components/mainCard/MainCard";
 
 export default function Favorite() {
+  const init = window.innerWidth < 600 ? 4 : 8
+  const incr = window.innerWidth < 600 ? 2 : 4
   const dispatch = useDispatch();
   const [action, setAction] = useState(false);
   const [product, setProduct] = useState([]);
-  const [count, setCount ] = useState(8);
-
+  const [count, setCount ] = useState(init);
+  const scroll = window.innerWidth == 600 ? 400 : 10
   useEffect(()=>{
       let ids = JSON.parse(localStorage.getItem('fav'))
-    //   console.log("ids",ids)
       async function fn (){
           const data = await idToProduct(ids)
           setProduct(data)
@@ -34,9 +35,9 @@ export default function Favorite() {
     const scrollHeight = e.target.documentElement.scrollHeight;
     const scrollTop = e.target.documentElement.scrollTop;
     const windowHeight = window.innerHeight;
-    if (scrollHeight - (scrollTop + windowHeight) < 10) {
+    if (scrollHeight - (scrollTop + windowHeight) < scroll) {
         setTimeout(()=>{
-          setCount(count => count+4)
+          setCount(count => count+incr)
         },500)
     }
   };
@@ -81,57 +82,3 @@ export default function Favorite() {
     </div>
   );
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//  useEffect(() => {
-//     dispatch(favorite(false));
-//     let ids = JSON.parse(localStorage.getItem("fav"));
-//     console.log("ids", ids);
-//     if (!ids) {
-//       ids = [];
-//     } else {
-//       setProduct([]);
-//     }
-
-//     ids &&
-//       ids.map(async (e) => {
-//         const result = await idToProduct(e);
-//         console.log('result',result)
-//         setRes(result);
-//         console.log('res',res)
-//       });
-//   }, [action]);
-
-//   useEffect(() => {
-//     if (res) {
-//         setProduct((p) => [...p, res]);
-//         console.log("productt", product);
-//     }
-//   }, [res]);

@@ -32,7 +32,6 @@ export default function ColllectionPage() {
   },[collection])
 
 
-  console.log(window.innerWidth)
   return (
     <div className="collections">
       <div className="container">
