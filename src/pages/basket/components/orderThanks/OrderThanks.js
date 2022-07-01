@@ -1,9 +1,9 @@
 import React from "react";
 import "./orderThanks.scss";
 import { useDispatch } from 'react-redux';
-import { card, isSended } from "../../redux/reducers/booleanReducer";
+import { card, isSended } from "../../../../redux/reducers/booleanReducer";
 import { useNavigate } from 'react-router-dom';
-import done from '../../assets/modal/Vector (10).png'
+import done from '../../../../assets/modal/Vector (10).png'
 
 export default function OrderThanks({setModal}) {
     const dispatch = useDispatch()

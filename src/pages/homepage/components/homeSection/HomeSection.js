@@ -32,7 +32,7 @@ export default function HomeSection({ title }) {
             products.map((e, i) => {
               const { name, images, price, discount, id, size, colors,collection } = e;
               return (
-                <div key={id} className="-wrapper">
+                <div key={i} className="-wrapper">
                   <MainCard
                     images={images}
                     name={name}

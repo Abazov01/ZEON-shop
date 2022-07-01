@@ -13,7 +13,8 @@ const dictionary = {
   favorite: "Избранное",
   basket: "Корзина",
   public: "Публичная оферта",
-  product: "Вечернее платье",
+  login:'Вход',
+  register: 'Регистрация'
 };
 
 export default function BreadCrumbs() {
@@ -23,7 +24,7 @@ export default function BreadCrumbs() {
 
   useEffect(() => {
     dispatch(bread(location));
-  },[useLocation()]);
+  }, [useLocation()]);
   const display = location[0] == "" && location[1] == "" ? "none" : "block";
 
   return (
@@ -32,21 +33,25 @@ export default function BreadCrumbs() {
         <div className="-content">
           <NavLink to={"/"}> Главная </NavLink>
           {breadd &&
-            breadd.map((e, i,arr) => {
+            breadd.map((e, i, arr) => {
               return (
-                <div style={{display: 'flex'}} key={i}>
+                <div className="wrapper" style={{ display: "flex" }} key={i}>
                   <span>/</span>{" "}
-                  {arr.length == 1 ? <div className="one">{dictionary[e]}</div> :<NavLink
-                    to={
-                      i == 0
-                        ? "/collections"
-                        : i == 1
-                        ? `/collections/${location[2]}`
-                        : `/collections/${location[2]+'/'+location[3]}`
-                    }
-                  >
-                    {i == 0 ? dictionary[e] : e}
-                  </NavLink>}
+                  {arr.length == 1 ? (
+                    <div className="one">{dictionary[e]}</div>
+                  ) : (
+                    <NavLink
+                      to={
+                        i == 0
+                          ? "/collections"
+                          : i == 1
+                          ? `/collections/${location[2]}`
+                          : `/collections/${location[2] + "/" + location[3]}`
+                      }
+                    >
+                      {i == 0 ? dictionary[e] : e}
+                    </NavLink>
+                  )}
                 </div>
               );
             })}
@@ -55,4 +60,3 @@ export default function BreadCrumbs() {
     </div>
   );
 }
-

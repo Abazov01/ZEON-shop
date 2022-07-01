@@ -5,6 +5,9 @@ import App from "./App";
 import { store } from "./redux/index";
 import "normalize.css";
 import { BrowserRouter } from "react-router-dom";
+import './firebase'
+
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <BrowserRouter>

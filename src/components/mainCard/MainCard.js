@@ -3,8 +3,8 @@ import "./mainCard.scss";
 import lovee from "../../assets/home/heart.png";
 import loveRed from "../../assets/home/heart-red.png";
 import { NavLink, useNavigate } from "react-router-dom";
-import { fromToFav, isFav, nameToId } from "../../actions";
-import { useDispatch } from "react-redux";
+import { fromToFav, fromToFav2, isFav, isFav2, nameToId } from "../../actions";
+import { useDispatch, useSelector } from "react-redux";
 
 const HiddenImgs = ({ images, setMain }) => {
   return (
@@ -30,6 +30,8 @@ const Discount = ({ discount }) => {
   );
 };
 
+//================================================
+
 export default function MainCard({
   images,
   price,
@@ -40,16 +42,16 @@ export default function MainCard({
   id,
   collectName,
   setAction,
-  home
+  home,
 }) {
   const [index, setIndex] = useState(0);
   const [fav, setFav] = useState(false);
   const [hover, setHover] = useState("none");
   const [cId, setCId] = useState();
-  const [love, setLove] = useState('none')
+  const [love, setLove] = useState("none");
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
+  const isAuth = useSelector((s) => s.user.isAuth);
   const scrollWidth = images && 100 / images.length;
   let newPrice;
   if (discount > 0) {
@@ -59,97 +61,116 @@ export default function MainCard({
   useEffect(() => {
     const fn = async () => {
       const collectId = await nameToId(collectName);
+      isFav2(id).then((b) => {
+        setFav(b);
+        b ? setHover("block") : setHover("none");
+      });
       setCId(collectId);
     };
     fn();
-    setFav(isFav(id));
-    isFav(id) ? setHover("block") : setHover('none')
-    leave()
+    leave();
+    if(isAuth){}else{setFav(false)}
   }, []);
 
-  
-  useEffect(()=>{
-    if(window.innerWidth < 520) setLove('block')
-  })
+  useEffect(() => {
+    if (window.innerWidth < 520) setLove("block");
+  });
 
-  
-  const leave = () => {
-    if(isFav(id)){
-      setHover('none')
-      setLove('block')
-    }else{
-      setHover('none')
-      setLove('none')
+  const leave = async () => {
+    const isHave = await isFav2(id);
+    if (isHave) {
+      setHover("none");
+      setLove("block");
+    } else {
+      setHover("none");
+      setLove("none");
     }
-  }
-  const favorite = home ? fav : isFav(id)
+  };
   return (
-    <div
-      onClick={() => {navigate(`/collections/${cId}/${id}`);window.scrollTo({top:0, behavior:'smooth'})}}
-      className="mainCard"
-    >
+    cId && (
       <div
-        onMouseMove={() => {setHover("block");setLove('block')}}
-        onMouseLeave={() => leave()}
-        className="__start"
+        onClick={() => {
+          navigate(`/collections/${cId}/${id}`);
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }}
+        className="mainCard"
       >
-        <img src={images && images[index]} alt="..." />
-        <HiddenImgs images={images} setMain={setIndex} />
-        {discount > 0 ? <Discount discount={discount} /> : null}
         <div
-          onClick={(e) => e.stopPropagation()}
-          style={{ display: love }}
-          className="-favicon"
+          onMouseMove={() => {
+            setHover("block");
+            setLove("block");
+          }}
+          onMouseLeave={() => leave()}
+          className="__start"
         >
-          <img
-            onClick={() => {
-              fromToFav(id, dispatch);
-              setFav(isFav(id));
-              isFav(id) ? setLove("block") : setLove('none')
-              setAction && setAction((a) => !a);
-            }}
-            src={ favorite ? loveRed : lovee}
-            alt=""
-          />
-        </div>
-        <div style={{ display: hover }} className="-scroll">
+          <img src={images && images[index]} alt="..." />
+          <HiddenImgs images={images} setMain={setIndex} />
+          {discount > 0 ? <Discount discount={discount} /> : null}
           <div
-            style={{
-              width: scrollWidth + "%",
-              marginLeft: index * scrollWidth + "%",
-            }}
-          ></div>
+            onClick={(e) => e.stopPropagation()}
+            style={{ display: love }}
+            className="-favicon"
+          >
+            <img
+              onClick={async () => {
+                fromToFav2(id, dispatch);
+                isAuth
+                  ? home
+                    ? isFav2(id).then((b) => setFav(!b))
+                    : isFav2(id + 1).then((b) => setFav(!b))
+                  : alert('Сначала войдите')
+                home
+                  ? isFav2(id).then((b) => b)
+                    ? setLove("block")
+                    : setLove("none")
+                  : isFav2(id).then((b) => b)
+                  ? setLove("block")
+                  : setLove("none");
+                setAction && setAction((a) => !a);
+              }}
+              src={fav ? loveRed : lovee}
+              alt=""
+            />
+          </div>
+          <div style={{ display: hover }} className="-scroll">
+            <div
+              style={{
+                width: scrollWidth + "%",
+                marginLeft: index * scrollWidth + "%",
+              }}
+            ></div>
+          </div>
+        </div>
+        <div className="__end">
+          <h4 className="-name">{name}</h4>
+          <p className="-price">
+            <span className="-newprice">{discount ? newPrice : price}р </span>
+            {discount ? <span className="-oldprice">{price}р</span> : null}
+          </p>
+          <p className="-size">
+            Размер:
+            <span>
+              {size?.start}-{size?.end}
+            </span>
+          </p>
+          <div className="-colors">
+            {colors &&
+              colors.map((e, i) => {
+                return (
+                  <div key={i} className="-wrapper">
+                    <div
+                      style={{
+                        background: e,
+                        border: e == "#FFFFFF" && ".5px solid #e7e7e7",
+                      }}
+                      className="-color"
+                    ></div>
+                  </div>
+                );
+              })}
+          </div>
         </div>
       </div>
-      <div className="__end">
-        <h4 className="-name">{name}</h4>
-        <p className="-price">
-          <span className="-newprice">{discount ? newPrice : price}р </span>
-          {discount ? <span className="-oldprice">{price}р</span> : null}
-        </p>
-        <p className="-size">
-          Размер:
-          <span>
-            {size?.start}-{size?.end}
-          </span>
-        </p>
-        <div className="-colors">
-          {colors &&
-            colors.map((e, i) => {
-              return (
-                <div key={i} className="-wrapper">
-                  <div
-                    style={{
-                      background: e,
-                      border: e == "#FFFFFF" && ".5px solid #e7e7e7",
-                    }}
-                    className="-color"
-                  ></div>
-                </div>
-              );
-            })}
-        </div>
-      </div>
-    </div>
+    )
   );
 }

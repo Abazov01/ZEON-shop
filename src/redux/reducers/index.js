@@ -12,6 +12,7 @@ import { searchReducer } from './searchReducer';
 import { phonsReducer } from './phonsReducer';
 import { breadReducer } from './breadReducer';
 import { promptingReducer } from './promptingReducer';
+import { userReducer } from "./userReducer";
 
 export const rootReducer = combineReducers({
     footer: footerReducer,
@@ -27,4 +28,5 @@ export const rootReducer = combineReducers({
     phons: phonsReducer,
     bread: breadReducer,
     hints: promptingReducer,
+    user:userReducer,
 })

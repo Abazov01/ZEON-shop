@@ -21,9 +21,9 @@ export default function MenuModal({ menu, setMenu }) {
   const whatsapp = useSelector((state) => state.footer.social[2]?.link);
 
   if(menu){
-    // document.body.style.overflow = "hidden";
+    document.body.style.overflow = "hidden";
   }else{
-    // document.body.style.overflow = "auto";
+    document.body.style.overflow = "auto";
   }
   return (
       <div

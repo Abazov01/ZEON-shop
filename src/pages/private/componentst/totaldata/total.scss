@@ -1,0 +1,18 @@
+.totaldata{
+    width: 35%;
+    background: #fff;
+    text-align: center;
+    padding: 10px;
+    .title{
+        font-size: 18px;
+        font-weight: 600;
+    }
+    .line{
+        display: flex;
+        justify-content: space-between;
+        margin-top: 14px;
+        span{
+            color: #979797;
+        }
+    }
+}

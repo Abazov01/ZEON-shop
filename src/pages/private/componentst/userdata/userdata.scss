@@ -1,0 +1,20 @@
+.userdata{
+    width: 60%;
+    background: #fff;
+    padding: 15px 20px ;
+    .name{
+        display: flex;
+        justify-content: space-around;
+        font-size: 24px;
+        font-weight: 500;
+    }
+    .email,.city,.country,.phone{
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+        font-weight: 500;
+        span{
+            color: #979797;
+        }
+    }
+}

@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from "react";
-import close from "../../assets/modal/X.png";
+import './orderModal.scss'
+import close from "../../../../assets/modal/X.png";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
-import Thanks from "./../../components/chatModal/Thanks";
-import { isSended } from "../../redux/reducers/booleanReducer";
-import { clearCard } from "../../actions";
-import OrderThanks from './OrderThanks';
+import Thanks from "../../../../components/chatModal/Thanks";
+import { isSended } from "../../../../redux/reducers/booleanReducer";
+import { clearCard, sendMessage } from "../../../../actions";
+import OrderThanks from '../orderThanks/OrderThanks';
 
 export default function OrderModal({ setModal }) {
   const phons = useSelector((s) => s.phons);
   const isSend = useSelector(s => s.booleans.isSended)
   const dispatch = useDispatch()
   
-  const [code, setCode] = useState();
+  const [code, setCode] = useState('+996');
   const [flag, setFlag] = useState("https://i.postimg.cc/Z5scqPgM/KG.png");
   const [name, setName] = useState();
   const [surname, setSurname] = useState();
@@ -47,12 +48,28 @@ export default function OrderModal({ setModal }) {
     setValid2(validTest());
   }, [email, phone]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
-    if(!valid2)return
+    if(!valid2 || !valid)return
+    let arr = JSON.parse(localStorage.getItem('card'))
+    console.log(arr)
+    arr = arr.map(e => ({id:e.id, count:e.count, color: e.color.split('').slice(1,7).join('')}))
+    console.log(arr)
+    let text = `
+    Здравствуйте меня зовут ${name +' '+ surname}, 
+    я хочу заказать у вас:
+     ${arr.map(e=>`
+     id: ${e.id}, color: ${e.color} - ${e.count}шт.`)}
+    email: ${email}
+    телефонный номер: ${code, phone}
+    страна: ${country}
+    город:${city}`
+    console.log(text)
+    await sendMessage(text)
     dispatch(isSended(true))
     clearCard()
   };
+
 
   const clickToButton = () => {
     if (email && phone) {
@@ -105,7 +122,7 @@ export default function OrderModal({ setModal }) {
               />
             </div>
             <div className="-surname">
-              <div className="valid-text">Ваше фамилия</div>
+              <div className="valid-text">Ваша фамилия</div>
               <input
                 onChange={(e) => {
                   setSurname(e.target.value);
@@ -200,8 +217,8 @@ export default function OrderModal({ setModal }) {
                 }}
                 type="checkbox"
               />
-              Согласен с условиями{" "}
-              <NavLink to="/public">публичной оферты</NavLink>
+              <p>Согласен с условиями
+              <NavLink to="/public">публичной оферты</NavLink></p>
             </div>
             <label
               onClick={clickToButton}

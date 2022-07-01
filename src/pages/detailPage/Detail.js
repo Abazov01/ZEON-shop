@@ -5,14 +5,15 @@ import { NavLink, useParams } from "react-router-dom";
 import {
   getDetail,
   isFav,
-  fromToFav,
-  fromOrToCard,
-  isCard,
+  fromToFav2,
+  isFav2,
+  fromToCard2,
+  isCard2,
 } from "./../../actions/index";
 import love from "../../assets/header/detlove.png";
 import love2 from "../../assets/header/detlove2.png";
 import basket from "../../assets/header/Icon.png";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function Detail() {
   const [data, setData] = useState([]);
@@ -22,20 +23,21 @@ export default function Detail() {
   const [currColor, setCurrColor] = useState("#73A39D");
 
   const dispatch = useDispatch();
+  const isAuth = useSelector((s) => s.user.isAuth);
 
   useEffect(() => {
     const fn = async () => {
       const data = await getDetail(productid);
       setData(data);
-      setFav(isFav(productid));
-      setCard(isCard(productid, currColor));
+      isFav2(productid).then(b => setFav(b))
+      isCard2(productid, currColor).then(b => setCard(b))
     };
     fn();
-  }, []);
+  }, [productid]);
 
-  useEffect(()=>{
-    setCard(isCard(id, currColor));
-  },[currColor])
+  useEffect(() => {
+    isCard2(id, currColor).then(b => setCard(b))
+  }, [currColor]);
 
   const {
     id,
@@ -66,11 +68,19 @@ export default function Detail() {
     img,
     count
   ) => {
-      fromOrToCard({ id, color, name, price, discount, size, img, count }, dispatch);
-      setCard(isCard(id, currColor));
-   
-  };
-  
+    if (!isAuth) {
+      alert("Cначала войдите!");
+      return;
+    }
+    fromToCard2(
+      { id, color, name, price, discount, size, img, count },
+      dispatch
+    );
+    
+    isCard2(id, currColor).then(b => setCard(!b))
+    setCurrColor(currColor)
+  };  
+
   return (
     <div className="detail">
       <div className="container">
@@ -158,14 +168,20 @@ export default function Detail() {
             </div>
             {card ? (
               <div className="-btn">
-                <NavLink to={"/basket"} className="-card">
+                <NavLink
+                  to={"/basket"}
+                  onClick={() =>
+                    window.scrollTo({ top: 0, behavior: "smooth" })
+                  }
+                  className="-card"
+                >
                   Перейти в корзину
                 </NavLink>
                 <div className="-love">
                   <img
                     onClick={() => {
-                      fromToFav(productid, dispatch);
-                      setFav(isFav(productid));
+                      fromToFav2(productid, dispatch);
+                      isFav2(productid).then(b => setFav(b))
                     }}
                     src={fav ? love2 : love}
                     alt=""
@@ -197,8 +213,9 @@ export default function Detail() {
                 <div className="-love">
                   <img
                     onClick={() => {
-                      fromToFav(productid, dispatch);
-                      setFav(isFav(productid));
+                      fromToFav2(productid, dispatch).then(() =>
+                        isFav2(productid).then((b) => setFav(b))
+                      );
                     }}
                     src={fav ? love2 : love}
                     alt=""

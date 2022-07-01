@@ -1,0 +1,128 @@
+.login {
+  .modal-content {
+    margin: 20px auto;
+    line-height: 1.4;
+    background-color: #fff;
+    padding: 10px 17px;
+    width: 440px;
+    @media (max-width: 320px) {
+      width: 85%;
+      padding: 24px 16px;
+    }
+
+    .-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .-text {
+      font-size: 18px;
+      font-weight: 600;
+      @media (max-width: 320px) {
+        font-size: 16px;
+      }
+    }
+    .-close {
+      width: 12px;
+      height: 12px;
+    }
+
+    .valid-text {
+      font-size: 10px;
+      font-weight: 500;
+      margin: 9px 0 2px 0;
+      // &:first-child {
+      //   margin-top: 18px;
+      // }
+    }
+    input {
+      font-size: 10px;
+      font-weight: 500;
+      padding: 10px 9px;
+      width: 100%;
+      border: 1px solid #e7e7e7;
+      outline: none;
+    }
+    .-name {
+    }
+    .-surname {
+    }
+    .-email {
+    }
+    .-phone {
+      .phone-wrapper {
+        border: 1px solid #e7e7e7;
+        display: flex;
+        align-items: center;
+        background: #fff;
+        padding: 10px 10px;
+        .-flag {
+          width: 20px;
+          height: 14px;
+          margin-right: 6px;
+          position: relative;
+          img {
+            position: absolute;
+            top: 0;
+            left: 0;
+          }
+        }
+        .-select {
+          border: none;
+          outline: none;
+          appearance: none;
+          // width: 59px;
+          font-size: 10px;
+        }
+        .-arrow {
+          font-size: 7px;
+          margin: 0 8px 0 4px;
+        }
+
+        .-input {
+          border: none;
+          outline: none;
+          padding: 0;
+        }
+      }
+    }
+    .-country {
+    }
+    .-city {
+    }
+    
+    .-error {
+      color: red;
+      font-size: 10px;
+    }
+    .-btn {
+      display: block;
+      width: 100%;
+      padding: 12px 0;
+      border: none;
+      background: rgba(255, 255, 255, 0.4);
+      font-size: 13px;
+      font-weight: 500;
+      text-align: center;
+      margin-top: 10px;
+      button {
+        background: transparent;
+        border: none;
+        color: #fff;
+        font-size: 13px;
+        font-weight: 500;
+      }
+    }
+    .-quest{
+        font-size: 13px;
+        text-align: right;
+        margin: 10px 0 5px;
+        @media (max-width:320px) {
+            font-size: 9px;
+        }
+        a{
+            color: blue;
+        }
+    }
+  }
+}

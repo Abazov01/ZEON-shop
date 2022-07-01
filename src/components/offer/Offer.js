@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import MainCard from "../mainCard/MainCard";
 import SecondCard from "../secondCard/SecondCard";
 import "./offer.scss";
 
@@ -21,7 +22,7 @@ export default function Offer({ title ,setAction}) {
               const { id, images, colors, price, name, discount, size,collection } = e;
               return (
                 <div key={i} className="-wrapper">
-                  <SecondCard
+                  <MainCard
                     id={id}
                     images={images}
                     colors={colors}

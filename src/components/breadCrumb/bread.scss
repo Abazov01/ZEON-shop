@@ -9,18 +9,21 @@
       font-size: 12px;
       overflow-x: auto;
     }
-    a {
+    .wrapper {
+      a {
         white-space: nowrap;
-    }
-    .one{
-      color: #979797;
-      cursor: pointer;
-    }
-    a:last-child {
-      color: #979797;
-    }
-    span {
-      margin: 0 7px;
+      }
+      .one {
+        color: #979797;
+        cursor: pointer;
+      }
+
+      span {
+        margin: 0 7px;
+      }
+      &:last-child a{
+        color: #979797;
+      }
     }
   }
 }

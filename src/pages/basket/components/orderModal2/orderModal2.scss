@@ -1,0 +1,78 @@
+.order-modal {
+    .overlay {
+      width: 98.7vw;
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      background-color: rgba(49, 49, 49, 0.8);
+      z-index: 4;
+    }
+    .modal-content {
+      position: absolute;
+      top: 13vh;
+      left: 0;
+      right: 0;
+      margin: auto;
+      line-height: 1.4;
+      background-color: #fff;
+      padding: 20px 17px;
+      width: 440px;
+      max-height: 86vh;
+      @media (max-width: 320px) {
+        width: 90%;
+        padding: 24px 16px;
+      }
+  
+      .-title {
+        display: flex;
+        justify-content: space-between;
+        font-size: 20px;
+        font-weight: 500;
+      }
+      
+      .-close {
+        width: 15px;
+        height: 15px;
+      }
+      .text{
+        display: flex;
+        justify-content: space-between;
+        span{
+          font-weight: 500;
+          color: #979797;
+        }
+        margin: 20px 0;
+      }
+      .agree{
+        font-size: 14px;
+        margin-bottom: 20px;
+        input{
+          width: 20px;
+          margin-right: 6px;
+        }
+        a{
+          color: blue;
+        }
+      }
+      
+      .btn {
+        display: block;
+        width: 100%;
+        padding: 12px 0;
+        border: none;
+        font-size: 13px;
+        font-weight: 500;
+        text-align: center;
+        button {
+          background: transparent;
+          border: none;
+          color: #fff;
+          font-size: 13px;
+          font-weight: 500;
+        }
+      }
+    }
+  }
+  
