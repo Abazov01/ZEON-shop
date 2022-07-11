@@ -4740,23 +4740,26 @@
     {
       "uid": "TV0ArMtlC3R9QlFBv95x84La5ko1",
       "fav": [
-        "31"
+        "31",
+        "118",
+        "119",
+        "123",
+        "89",
+        "100",
+        "101",
+        "105",
+        "104",
+        "108",
+        "109",
+        "110",
+        "107",
+        "99",
+        "102",
+        "32",
+        "116",
+        "117"
       ],
-      "card": [
-        {
-          "id": "31",
-          "color": "#73A39D",
-          "name": "The Organic Cotton Clothes ",
-          "price": "2123",
-          "discount": 50,
-          "size": {
-            "start": 42,
-            "end": 50
-          },
-          "img": "https://i.postimg.cc/fWtzpMTy/image1.jpg",
-          "count": 8
-        }
-      ],
+      "card": [],
       "history": [
         {
           "data": [
@@ -4859,6 +4862,44 @@
           ],
           "date": "1.7.2022",
           "oclock": "15:21"
+        },
+        {
+          "data": [
+            {
+              "id": "31",
+              "color": "#73A39D",
+              "name": "The Organic Cotton Clothes ",
+              "price": "2123",
+              "discount": 50,
+              "size": {
+                "start": 42,
+                "end": 50
+              },
+              "img": "https://i.postimg.cc/fWtzpMTy/image1.jpg",
+              "count": 8
+            }
+          ],
+          "date": "11.7.2022",
+          "oclock": "15:21"
+        },
+        {
+          "data": [
+            {
+              "id": "31",
+              "color": "#73A39D",
+              "name": "The Organic Cotton Clothes ",
+              "price": "2123",
+              "discount": 50,
+              "size": {
+                "start": 42,
+                "end": 50
+              },
+              "img": "https://i.postimg.cc/fWtzpMTy/image1.jpg",
+              "count": 1
+            }
+          ],
+          "date": "11.7.2022",
+          "oclock": "17:53"
         }
       ],
       "id": 2

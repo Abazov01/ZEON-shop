@@ -81,7 +81,7 @@ export default function Header() {
       <div className="header__block-2">
         <div className="container">
           <div className="header__row">
-            <div onClick={() => setMenu(true)} className="header__2-burger">
+            <div onClick={() => {setMenu(true); setSearch(false)}} className="header__2-burger">
               <div className="wrapper">
                 <span></span>
               </div>

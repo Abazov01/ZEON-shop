@@ -29,7 +29,8 @@ function App() {
   const isAuth = useSelector(s => s.user.isAuth)
   useEffect(() => {
     dispatch(getAll());
-  });
+    window.scrollTo({top:0})
+  },[]);
 
   const authOnReload = async() => {
     const auth = await getAuth()
