@@ -4739,8 +4739,24 @@
   "users": [
     {
       "uid": "TV0ArMtlC3R9QlFBv95x84La5ko1",
-      "fav": [],
-      "card": [],
+      "fav": [
+        "31"
+      ],
+      "card": [
+        {
+          "id": "31",
+          "color": "#73A39D",
+          "name": "The Organic Cotton Clothes ",
+          "price": "2123",
+          "discount": 50,
+          "size": {
+            "start": 42,
+            "end": 50
+          },
+          "img": "https://i.postimg.cc/fWtzpMTy/image1.jpg",
+          "count": 8
+        }
+      ],
       "history": [
         {
           "data": [
