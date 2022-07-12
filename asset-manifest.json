@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/ZEON-shop/static/css/main.18d87ec0.css",
-    "main.js": "/ZEON-shop/static/js/main.5a82016e.js",
+    "main.js": "/ZEON-shop/static/js/main.230bbf31.js",
     "static/media/image 3.svg": "/ZEON-shop/static/media/image 3.d57915cf47462eb7674e7f57106b5bff.svg",
     "static/media/Group 1253.svg": "/ZEON-shop/static/media/Group 1253.af6774101cf181337f50f6e9cf6521a1.svg",
     "static/media/incr.svg": "/ZEON-shop/static/media/incr.9205afee8d3201de77d20a5bbb9004cc.svg",
@@ -12,10 +12,10 @@
     "static/media/decr.svg": "/ZEON-shop/static/media/decr.8b53efe41521e89f8560332315c8a8e6.svg",
     "static/media/disabled.svg": "/ZEON-shop/static/media/disabled.67429b43cfd73cdfd443a15aa82e20a5.svg",
     "main.18d87ec0.css.map": "/ZEON-shop/static/css/main.18d87ec0.css.map",
-    "main.5a82016e.js.map": "/ZEON-shop/static/js/main.5a82016e.js.map"
+    "main.230bbf31.js.map": "/ZEON-shop/static/js/main.230bbf31.js.map"
   },
   "entrypoints": [
     "static/css/main.18d87ec0.css",
-    "static/js/main.5a82016e.js"
+    "static/js/main.230bbf31.js"
   ]
 }
