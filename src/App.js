@@ -66,7 +66,7 @@ function App() {
     
     authOnReload()
   },[isAuth]);
-
+  console.log(process.env)
   return (
     <div className="App">
       <Header />

@@ -13,8 +13,8 @@ import { phone } from "../redux/reducers/phonsReducer.js";
 import { prompting } from "../redux/reducers/promptingReducer";
 import { price, discount } from "./index";
 
-const API = "https://628b6c0d667aea3a3e2ef5f3.mockapi.io/api/";
-const LOCAL_API = "http://localhost:5000";
+const API = process.env.REACT_APP_MOCK_API;
+const LOCAL_API = process.env.REACT_APP_SERVER_API;
 const answer =
   "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquet laoreet a, neque, gravida urna libero iaculis lacus. Pellentesque pellentesque massa ornare sit pellentesque elit nulla. Id est tellus maecenas ornare velit. Ut cras ut rhoncus fermentum pharetra a sit.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquet laoreet a, neque, gravida urna libero iaculis lacus. Pellentesque pellentesque massa ornare sit pellentesque elit nulla. Id est tellus maecenas ornare velit. ";
 const newsObj = {
@@ -25,7 +25,7 @@ const uid = JSON.parse(localStorage.getItem("currentUser"))?.uid;
 // =====================================>>>GENERAL<<<====================
 
 export const getAll = () => async (dispatch) => {
-  const res = await axios.get(API + "general");
+  const res = await axios.get(API);
   dispatch(footer(res.data[0].footer));
   dispatch(header(res.data[0].header));
   const arr = res.data[0].questions.map((e) => ({ ...e, answer: answer }));

@@ -95,9 +95,9 @@ export default function Login() {
         dispatch(authState(!!uid))
         dispatch(uId(uid))
         localStorage.setItem("currentUser", JSON.stringify(data));
-        const test = await axios.get(`http://localhost:5000/users?uid=${uid}`);
+        const test = await axios.get(`${process.env.REACT_APP_SERVER_API}/users?uid=${uid}`);
         if (!test.data.length > 0)
-          axios.post(`http://localhost:5000/users`, newUser);
+          axios.post(process.env.REACT_APP_SERVER_API, newUser);
         navigate('/')
       } catch (error) {
         console.log(error.message);

@@ -22,7 +22,7 @@ export default function Favorite() {
     async function fn() {
       const uid = JSON.parse(localStorage.getItem("currentUser"))?.uid;
       if (uid) {
-        const user = await axios.get(`http://localhost:5000/users?uid=${uid}`);
+        const user = await axios.get(`${process.env.REACT_APP_SERVER_API}/users?uid=${uid}`);
         const data = await idToProduct(user.data[0].fav);
         setProduct(data);
       }
